@@ -8,5 +8,5 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ./api:/app/
+      - ./abcland/api:/app/
     command: /bin/bash -c "uvicorn main:app --reload --host "0.0.0.0""
