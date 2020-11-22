@@ -1,7 +1,24 @@
 version: "3"
 
 services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    volumes:
+      - db:/var/lib/postgresql
   api:
+    environment:
+      - API_DB_NAME=${DB_NAME}
+      - API_DB_USER=${DB_USER}
+      - API_DB_PASSWORD=${DB_PASSWORD}
+      - API_DB_HOST=${DB_HOST}
+      - API_DB_PORT=${DB_PORT}
     build:
       context: .
       dockerfile: ./docker/DockerFile.server
@@ -10,3 +27,6 @@ services:
     volumes:
       - ./abcland/api:/app/
     command: /bin/bash -c "uvicorn main:app --reload --host "0.0.0.0""
+
+volumes:
+  db:
