@@ -5,9 +5,9 @@ import hashlib
 
 
 class HashType(str, Enum):
-    sha1 = 'sha1'
-    sha512 = 'sha512'
-    md5 = 'md5'
+    sha1 = "sha1"
+    sha512 = "sha512"
+    md5 = "md5"
 
 
 class HashRouter:
