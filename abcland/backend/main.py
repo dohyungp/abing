@@ -1,14 +1,5 @@
-from typing import Optional
 from fastapi import FastAPI
-from pydantic import BaseModel
-
-
-class Item(BaseModel):
-    name: str
-    price: float
-    description: Optional[str] = None
-    tax: Optional[float] = None
-
+from schemas.item import Item
 
 app = FastAPI()
 
