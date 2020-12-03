@@ -4,7 +4,7 @@ from schemas.item import Item
 app = FastAPI()
 
 
-@app.post('/items/')
+@app.post("/items/")
 async def create_item(item: Item):
     item_dict = item.dict()
     if item.tax:
@@ -13,6 +13,6 @@ async def create_item(item: Item):
     return item_dict
 
 
-@app.put('/items/{item_id}')
+@app.put("/items/{item_id}")
 async def update_item(item_id: int, item: Item):
-    return {'item_id': item_id, **item.dict()}
+    return {"item_id": item_id, **item.dict()}
