@@ -21,11 +21,11 @@ services:
       - API_DB_PORT=${DB_PORT}
     build:
       context: .
-      dockerfile: ./docker/DockerFile.server
+      dockerfile: ./docker/DockerFile.backend
     ports:
       - 8000:8000
     volumes:
-      - ./abcland/backend:/app/
+      - ./abitary/backend:/app/
     command: /bin/bash -c "uvicorn main:app --reload --host "0.0.0.0""
 
 volumes:
