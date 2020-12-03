@@ -12,7 +12,7 @@ services:
       - ${DB_PORT}:${DB_PORT}
     volumes:
       - db:/var/lib/postgresql
-  api:
+  backend:
     environment:
       - API_DB_NAME=${DB_NAME}
       - API_DB_USER=${DB_USER}
