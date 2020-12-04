@@ -25,7 +25,7 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ./abitrary/backend/:/app/
+      - ./abitrary/backend/api:/app
     command: /bin/bash -c "uvicorn app.main:app --reload --host "0.0.0.0""
 
 volumes:

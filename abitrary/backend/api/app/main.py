@@ -1,6 +1,6 @@
 from typing import Generator
 from fastapi import FastAPI
-from app.db.session import SessionLocal
+from .db.session import SessionLocal
 
 # from app.models.experiment import Experiment
 from app.schemas.item import Item
