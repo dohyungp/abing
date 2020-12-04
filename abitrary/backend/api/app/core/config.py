@@ -4,6 +4,8 @@ from pydantic import BaseSettings, PostgresDsn, validators
 
 class Settings(BaseSettings):
 
+    PROJECT_NAME: str = "abitrary"
+
     SECRET_KEY: str = secrets.token_urlsafe(32)
 
     POSTGRES_SERVER: str
