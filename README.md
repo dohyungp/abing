@@ -4,6 +4,10 @@
 
 ---
 
+## Description
+
+AB 테스팅을 위한 Traffic allocation 오픈소스. 
+
 ## Stack
 
 FastAPI + uvicorn + PostgreSQL ~~+ React + Redux + Redux Saga + Ant.design~~
