@@ -16,4 +16,5 @@ class Experiment(Base):
     description = Column(String, null=True)
     start_date = Column(DateTime, null=True)
     end_date = Column(DateTime, null=True)
-    arms = relationship("Arm", back_populates="experiment")
+    # NOTE: Arm 순서는 Immutable해야 함.
+    arms = relationship("Arm", order_by="Arm.id", back_populates="experiment")
