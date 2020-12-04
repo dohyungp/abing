@@ -1,0 +1,13 @@
+frontend/node_modules
+frontend/npm-debug.log
+Dockerfile*
+docker-compose*
+.dockerignore
+.git
+.gitignore
+README.md
+LICENSE
+.vscode
+__pycache__
+dist
+.DS_Store
