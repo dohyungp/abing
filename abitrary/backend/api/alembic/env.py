@@ -1,3 +1,4 @@
+import os
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
@@ -28,6 +29,15 @@ target_metadata = Base.metadata
 # ... etc.
 
 
+def get_postgres_dsn():
+    host = os.environ.get("API_DB_HOST")
+    port = os.environ.get("API_DB_PORT")
+    db = os.environ.get("API_DB_NAME")
+    user = os.environ.get("API_DB_USER")
+    password = os.environ.get("API_DB_PASSWORD")
+    return f"postgresql://{user}:{password}@{host}:{port}/{db}"
+
+
 def run_migrations_offline():
     """Run migrations in 'offline' mode.
 
@@ -40,7 +50,7 @@ def run_migrations_offline():
     script output.
 
     """
-    url = config.get_main_option("sqlalchemy.url")
+    url = get_postgres_dsn()
     context.configure(
         url=url,
         target_metadata=target_metadata,
