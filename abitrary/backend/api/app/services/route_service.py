@@ -1,6 +1,6 @@
 """Sampling Service
 """
-from typing import Enum
+from enum import Enum
 import hashlib
 
 
