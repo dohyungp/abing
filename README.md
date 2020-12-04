@@ -1,4 +1,7 @@
-![ABitrary](abitrary-logo.png)
+<p align="center">
+    <img src="abitrary-logo.png">
+</p>
+
 ---
 
 ## Stack
