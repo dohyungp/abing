@@ -10,6 +10,9 @@ if TYPE_CHECKING:
 
 
 class Arm(Base):
+
+    __tablename__ = "arms"
+
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     name = Column(String(150), index=True)
     experiment_id = Column(Integer, ForeignKey("experiment.id"))

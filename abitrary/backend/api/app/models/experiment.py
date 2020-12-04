@@ -10,6 +10,9 @@ if TYPE_CHECKING:
 
 
 class Experiment(Base):
+
+    __tablename__ = "experiments"
+
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     name = Column(String(200), index=True)
     is_running = Column(Boolean(), default=False)
