@@ -30,11 +30,11 @@ target_metadata = Base.metadata
 
 
 def get_postgres_dsn():
-    host = os.environ.get("API_DB_HOST")
-    port = os.environ.get("API_DB_PORT")
-    db = os.environ.get("API_DB_NAME")
-    user = os.environ.get("API_DB_USER")
-    password = os.environ.get("API_DB_PASSWORD")
+    host = os.environ.get("POSTGRES_HOST")
+    port = os.environ.get("POSTGRES_PORT")
+    db = os.environ.get("POSTGRES_DB")
+    user = os.environ.get("POSTGRES_USER")
+    password = os.environ.get("POSTGRES_PASSWORD")
     return f"postgresql://{user}:{password}@{host}:{port}/{db}"
 
 

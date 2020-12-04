@@ -1,5 +1,7 @@
+from typing import Optional, Dict, Any
+
 import secrets
-from pydantic import BaseSettings, PostgresDsn, validators
+from pydantic import BaseSettings, PostgresDsn, validator
 
 
 class Settings(BaseSettings):
@@ -8,7 +10,7 @@ class Settings(BaseSettings):
 
     SECRET_KEY: str = secrets.token_urlsafe(32)
 
-    POSTGRES_SERVER: str
+    POSTGRES_HOST: str
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
     POSTGRES_DB: str
@@ -25,7 +27,7 @@ class Settings(BaseSettings):
             scheme="postgresql",
             user=values.get("POSTGRES_USER"),
             password=values.get("POSTGRES_PASSWORD"),
-            host=values.get("POSTGRES_SERVER"),
+            host=values.get("POSTGRES_HOST"),
             port=values.get("POSTGRES_PORT"),
             path=f"/{values.get('POSTGRES_DB', '')}",
         )

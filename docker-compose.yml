@@ -14,11 +14,11 @@ services:
       - db:/var/lib/postgresql
   backend:
     environment:
-      - API_DB_NAME=${DB_NAME}
-      - API_DB_USER=${DB_USER}
-      - API_DB_PASSWORD=${DB_PASSWORD}
-      - API_DB_HOST=${DB_HOST}
-      - API_DB_PORT=${DB_PORT}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_HOST=${DB_HOST}
+      - POSTGRES_PORT=${DB_PORT}
     build:
       context: .
       dockerfile: ./docker/DockerFile.backend
