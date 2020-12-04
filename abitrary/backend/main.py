@@ -1,7 +1,19 @@
+from typing import Generator
 from fastapi import FastAPI
-from schemas.item import Item
+from backend.db.session import SessionLocal
+
+# from backend.models.experiment import Experiment
+from backend.schemas.item import Item
 
 app = FastAPI()
+
+
+def get_db() -> Generator:
+    try:
+        db = SessionLocal()
+        yield db
+    finally:
+        db.close()
 
 
 @app.post("/items/")
