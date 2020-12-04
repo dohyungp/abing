@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
-from backend.db.base_class import Base
+from app.db.base_class import Base
 
 
 class Experiment(Base):
