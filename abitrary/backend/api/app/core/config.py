@@ -15,8 +15,8 @@ class Settings(BaseSettings):
 
     @validator("SQLALCHEMY_DATABASE_URI", pre=True)
     def assemble_db_connection(
-        cls, v: Optional[str], values: Dict[str, Any]
-    ) -> Any:  # noqa
+        cls, v: Optional[str], values: Dict[str, Any]  # noqa
+    ) -> Any:
         if isinstance(v, str):
             return v
         return PostgresDsn.build(
