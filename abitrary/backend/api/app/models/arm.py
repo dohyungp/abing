@@ -17,3 +17,4 @@ class Arm(Base):
     name = Column(String(150), index=True)
     experiment_id = Column(Integer, ForeignKey("experiments.id"), nullable=False)
     experiment = relationship("Experiment", back_populates="arms")
+    features = relationship("Feature", back_populates="arm")
