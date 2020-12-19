@@ -6,7 +6,8 @@ from sqlalchemy.orm import relationship
 from app.db.base_class import Base
 
 if TYPE_CHECKING:
-    from .experiment import Experiment
+    from .experiment import Experiment  # noqa: F401
+    from .feature import Feature  # noqa: F401
 
 
 class Arm(Base):

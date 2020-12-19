@@ -3,6 +3,9 @@ from sqlalchemy.orm import relationship
 
 from app.db.base import Base
 
+if TYPE_CHECKING:
+    from .arm import Arm  # noqa: F401
+
 
 class Feature(Base):
 
