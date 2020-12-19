@@ -2,6 +2,7 @@ from typing import TYPE_CHECKING
 
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
 
 from app.db.base import Base
 
@@ -19,3 +20,5 @@ class Feature(Base):
     description = Column(String)
     arm_id = Column(Integer, ForeignKey("arms.id"), nullable=False)
     arm = relationship("Arm", back_populates="features")
+    time_created = Column(DateTime(timezone=True), server_default=func.now())
+    time_updated = Column(DateTime(timezone=True), onupdate=func.now())

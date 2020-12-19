@@ -2,6 +2,7 @@ from typing import TYPE_CHECKING
 
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
 
 from app.db.base import Base
 
@@ -21,3 +22,5 @@ class Experiment(Base):
     end_date = Column(DateTime)
     # NOTE: Arm 순서는 Immutable해야 함.
     arms = relationship("Arm", order_by="Arm.id", back_populates="experiment")
+    time_created = Column(DateTime(timezone=True), server_default=func.now())
+    time_updated = Column(DateTime(timezone=True), onupdate=func.now())
