@@ -1,1 +1,1 @@
-from .experiment import ExperimentCreate
+from .experiment import ExperimentCreate, ExperimentUpdate

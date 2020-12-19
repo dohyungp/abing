@@ -1,6 +1,6 @@
 from typing import Generator, Any
 from fastapi import FastAPI
-from fastapi import Depends
+from fastapi import Depends, HTTPException
 
 from sqlalchemy.orm import Session
 
@@ -37,3 +37,18 @@ async def create_experiment(
     experiment_in: schemas.ExperimentCreate, db: Session = Depends(get_db)
 ):
     return crud.experiment.create(db=db, obj_in=experiment_in)
+
+
+@app.put("/experiements/{id}")
+def update_experiment(
+    *,
+    db: Session = Depends(get_db),
+    id: int,
+    experiment_in: schemas.ExperimentUpdate,
+) -> Any:
+
+    experiment = crud.experiment.get(db=db, id=id)
+    if not experiment:
+        raise HTTPException(status_code=404, detail="Experiment not found")
+    experiment = crud.experiment.update(db=db, db_obj=experiment, obj_in=experiment_in)
+    return experiment
