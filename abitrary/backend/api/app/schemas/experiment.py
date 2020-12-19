@@ -7,14 +7,29 @@ from .arm import Arm
 class ExperimentBase(BaseModel):
     name: str
     description: Optional[str] = None
+    is_running: Optional[bool] = False
 
 
-class Experiment(ExperimentBase):
+class ExperimentCreate(ExperimentBase):
+    pass
+
+
+class ExperimentUpdate(ExperimentBase):
+    pass
+
+
+class ExperimentInDBBase(ExperimentBase):
     id: int
-    is_running: bool
-    arms: List[Arm] = list()
-    start_date: Optional[datetime] = None
-    end_date: Optional[datetime] = None
+    time_created: datetime
+    time_updated: datetime
 
     class Config:
         orm_mode = True
+
+
+class Experiment(ExperimentInDBBase):
+    pass
+
+
+class ExperimentInDB(ExperimentInDBBase):
+    pass
