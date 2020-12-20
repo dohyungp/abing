@@ -41,8 +41,8 @@ async def get_selected_arm_by_experiment(
             detail="Experiment arms are not set. Must required arm list at least 2.",
         )
 
-    router = HashRouter(user_id)
-    arm = router.route(experiment)
+    traffic_router = HashRouter(user_id)
+    arm = traffic_router.route(experiment)
     return arm
 
 
