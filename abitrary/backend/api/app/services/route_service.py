@@ -20,7 +20,7 @@ class HashRouter:
     >>> selected_arm = router.allocate(exp)
     """
 
-    def __init__(self, user_id: str, hash_type: HashType = HashType.sha1):
+    def __init__(self, user_id: str, hash_type: HashType = HashType.xxh32):
         self.user_id = user_id
         if hash_type in (HashType.xxh32, HashType.xxh64):
             self.hash = getattr(xxhash, hash_type)
