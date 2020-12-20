@@ -24,7 +24,7 @@ async def get_experiments(
     skip: int = 0,
     limit: int = 100,
 ):
-    return crud.experiment.get_multi(db, skip=skip, limit=limit)
+    return crud.experiment.get_list(db, skip=skip, limit=limit)
 
 
 @app.get("/experiments/{id}")
