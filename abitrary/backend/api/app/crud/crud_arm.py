@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 from app.crud.base import CRUDBase
 
-from app.models.arm import Arm
+from app.db.base import Arm
 from app.schemas.arm import ArmCreate, ArmUpdate
 
 

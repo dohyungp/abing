@@ -22,6 +22,13 @@ async def get_experiment(id: int, db: Session = Depends(deps.get_db)) -> Any:
     return crud.experiment.get(db=db, id=id)
 
 
+@router.get("/{id}/route")
+async def get_selected_arm_by_experiment(
+    id: int, user_id: str, db: Session = Depends(deps.get_db)
+):
+    return crud.experiment.get_selected_arm_by_experiment(db=db, id=id, user_id=user_id)
+
+
 @router.post("/")
 async def create_experiment(
     experiment_in: schemas.ExperimentCreate, db: Session = Depends(deps.get_db)

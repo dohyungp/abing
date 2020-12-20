@@ -55,7 +55,7 @@ class HashRouter:
         weight_table = dict()
 
         for arm in arms:
-            weight_ratio_table[arm] = arm.traffic_weight
+            weight_table[arm] = arm.traffic_weight
             total_weight += weight_table[arm]
 
         current_weight = 0
