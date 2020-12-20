@@ -8,7 +8,7 @@ from app.routes import deps
 router = APIRouter()
 
 
-@router.get("/experiments/")
+@router.get("/")
 async def get_experiments(
     db: Session = Depends(deps.get_db),
     skip: int = 0,
@@ -17,19 +17,19 @@ async def get_experiments(
     return crud.experiment.get_list(db, skip=skip, limit=limit)
 
 
-@router.get("/experiments/{id}")
+@router.get("/{id}")
 async def get_experiment(id: int, db: Session = Depends(deps.get_db)) -> Any:
     return crud.experiment.get(db=db, id=id)
 
 
-@router.post("/experiments/")
+@router.post("/")
 async def create_experiment(
     experiment_in: schemas.ExperimentCreate, db: Session = Depends(deps.get_db)
 ):
     return crud.experiment.create(db=db, obj_in=experiment_in)
 
 
-@router.put("/experiements/{id}")
+@router.put("/{id}")
 def update_experiment(
     *,
     db: Session = Depends(deps.get_db),
