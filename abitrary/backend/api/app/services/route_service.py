@@ -20,9 +20,9 @@ class HashType(str, Enum):
 
 class HashRouter:
     """Usage:
-    >>> router = HashRouter('123812412')
-    >>> exp = Experiment.query.get(1)
-    >>> selected_arm = router.allocate(exp)
+    >>> router = HashRouter('<User ID>')
+    >>> exp = Session.query(Experiment).first()
+    >>> selected_arm = router.route(exp)
     """
 
     def __init__(self, user_id: str, hash_type: HashType = HashType.xxh128):
