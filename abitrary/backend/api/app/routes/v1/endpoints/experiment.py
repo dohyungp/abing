@@ -32,8 +32,14 @@ async def get_selected_arm_by_experiment(
         raise HTTPException(status_code=400, detail="User id is required")
 
     experiment = crud.experiment.get(db=db, id=id)
+
     if not experiment:
         raise HTTPException(status_code=404, detail="Experiment not found")
+    elif len(experiment.arms) < 2:
+        raise HTTPException(
+            status_code=404,
+            detail="Experiment arms are not set. Must require arm list at least 2.",
+        )
 
     router = HashRouter(user_id)
     arm = router.route(experiment)
