@@ -8,6 +8,8 @@ class ExperimentBase(BaseModel):
     name: str
     description: Optional[str] = None
     is_running: Optional[bool] = False
+    start_date: Optional[datetime]
+    end_date: Optional[datetime]
 
 
 class ExperimentCreate(ExperimentBase):
