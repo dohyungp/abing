@@ -23,4 +23,6 @@ class Experiment(Base):
     # NOTE: Arm 순서는 Immutable해야 함.
     arms = relationship("Arm", order_by="Arm.id", back_populates="experiment")
     time_created = Column(DateTime(timezone=True), server_default=func.now())
-    time_updated = Column(DateTime(timezone=True), onupdate=func.now())
+    time_updated = Column(
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
+    )

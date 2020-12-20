@@ -21,4 +21,6 @@ class Arm(Base):
     experiment = relationship("Experiment", back_populates="arms")
     features = relationship("Feature", back_populates="arm")
     time_created = Column(DateTime(timezone=True), server_default=func.now())
-    time_updated = Column(DateTime(timezone=True), onupdate=func.now())
+    time_updated = Column(
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
+    )

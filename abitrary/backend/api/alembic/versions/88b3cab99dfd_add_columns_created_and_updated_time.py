@@ -28,7 +28,13 @@ def upgrade():
         ),
     )
     op.add_column(
-        "arms", sa.Column("time_updated", sa.DateTime(timezone=True), nullable=True)
+        "arms",
+        sa.Column(
+            "time_updated",
+            sa.DateTime(timezone=True),
+            server_default=sa.text("now()"),
+            nullable=True,
+        ),
     )
     op.add_column(
         "experiments",
@@ -41,7 +47,12 @@ def upgrade():
     )
     op.add_column(
         "experiments",
-        sa.Column("time_updated", sa.DateTime(timezone=True), nullable=True),
+        sa.Column(
+            "time_updated",
+            sa.DateTime(timezone=True),
+            server_default=sa.text("now()"),
+            nullable=True,
+        ),
     )
     op.add_column(
         "features",
@@ -53,7 +64,13 @@ def upgrade():
         ),
     )
     op.add_column(
-        "features", sa.Column("time_updated", sa.DateTime(timezone=True), nullable=True)
+        "features",
+        sa.Column(
+            "time_updated",
+            sa.DateTime(timezone=True),
+            server_default=sa.text("now()"),
+            nullable=True,
+        ),
     )
     # ### end Alembic commands ###
 

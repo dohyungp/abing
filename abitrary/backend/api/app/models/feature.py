@@ -21,4 +21,6 @@ class Feature(Base):
     arm_id = Column(Integer, ForeignKey("arms.id"), nullable=False)
     arm = relationship("Arm", back_populates="features")
     time_created = Column(DateTime(timezone=True), server_default=func.now())
-    time_updated = Column(DateTime(timezone=True), onupdate=func.now())
+    time_updated = Column(
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
+    )
