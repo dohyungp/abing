@@ -2,12 +2,15 @@
 """
 from enum import Enum
 import hashlib
+import xxhash
 
 
 class HashType(str, Enum):
     sha1 = "sha1"
     sha512 = "sha512"
     md5 = "md5"
+    xxh32 = "xxh32"
+    xxh64 = "xxh64"
 
 
 class HashRouter:
@@ -19,7 +22,10 @@ class HashRouter:
 
     def __init__(self, user_id: str, hash_type: HashType = HashType.sha1):
         self.user_id = user_id
-        self.hash = getattr(hashlib, hash_type)
+        if hash_type in (HashType.xxh32, HashType.xxh64):
+            self.hash = getattr(xxhash, hash_type)
+        else:
+            self.hash = getattr(hashlib, hash_type)
 
     def _digest_hash(self, data: str) -> str:
         """Hash digest"""
