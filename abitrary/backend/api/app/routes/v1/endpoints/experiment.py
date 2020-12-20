@@ -28,9 +28,6 @@ async def get_experiment(id: int, db: Session = Depends(deps.get_db)) -> Any:
 async def select_arm_by_experiment(
     id: int, user_id: str, db: Session = Depends(deps.get_db)
 ):
-    if user_id is None:
-        raise HTTPException(status_code=400, detail="User id is required")
-
     experiment = crud.experiment.get(db=db, id=id)
 
     if not experiment:
