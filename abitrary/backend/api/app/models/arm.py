@@ -17,6 +17,8 @@ class Arm(Base):
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     name = Column(String(150), index=True)
+    # NOTE: 실험 런칭 시 반영되는 가중치(e.g A가 100이고 B가 20이면 A는 100/120으로 트래픽 전달, B는 20/120으로 트래픽 전달)
+    traffic_weight = Column(Integer, nullable=False)
     experiment_id = Column(Integer, ForeignKey("experiments.id"), nullable=False)
     experiment = relationship("Experiment", back_populates="arms")
     features = relationship("Feature", back_populates="arm")
