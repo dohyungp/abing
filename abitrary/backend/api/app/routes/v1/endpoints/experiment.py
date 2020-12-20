@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -17,6 +17,32 @@ async def get_experiments(
     limit: int = 100,
 ):
     return crud.experiment.get_list(db, skip=skip, limit=limit)
+
+
+@router.get("/route")
+async def select_arms_by_experiments(
+    db: Session = Depends(deps.get_db),
+    *,
+    user_id: str,
+    is_running: Optional[bool] = True,
+):
+    traffic_router = HashRouter(user_id)
+    experiments = crud.experiment.get_list_by_running_state(db, is_running=is_running)
+    selected_arms = list()
+
+    if not experiments:
+        raise HTTPException(
+            status_code=404, detail="There are no experiments in the requested state"
+        )
+
+    for experiment in experiments:
+        if len(experiment.arms) < 2:
+            continue
+
+        arm = traffic_router.route(experiment)
+        selected_arms.append(arm)
+
+    return selected_arms
 
 
 @router.get("/{id}")

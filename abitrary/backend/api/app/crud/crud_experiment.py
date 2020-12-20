@@ -11,4 +11,9 @@ from app.schemas.experiment import ExperimentCreate, ExperimentUpdate
 from app.services.route_service import HashRouter
 
 
-experiment = CRUDBase[Experiment, ExperimentCreate, ExperimentUpdate](Experiment)
+class CRUDExperiment(CRUDBase[Experiment, ExperimentCreate, ExperimentUpdate]):
+    def get_list_by_running_state(self, db: Session, *, is_running: bool):
+        return db.query(self.model).filter(self.model.is_running == is_running).all()
+
+
+experiment = CRUDExperiment(Experiment)
