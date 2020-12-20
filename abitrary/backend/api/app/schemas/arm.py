@@ -6,6 +6,7 @@ from pydantic import BaseModel
 class ArmBase(BaseModel):
     name: str
     traffic_weight: int
+    experiment_id: int
 
 
 class ArmCreate(ArmBase):
