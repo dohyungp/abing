@@ -25,7 +25,7 @@ async def get_experiment(id: int, db: Session = Depends(deps.get_db)) -> Any:
 
 
 @router.get("/{id}/route")
-async def get_selected_arm_by_experiment(
+async def select_arm_by_experiment(
     id: int, user_id: str, db: Session = Depends(deps.get_db)
 ):
     if user_id is None:
