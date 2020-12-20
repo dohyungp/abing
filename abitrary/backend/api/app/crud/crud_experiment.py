@@ -11,11 +11,4 @@ from app.schemas.experiment import ExperimentCreate, ExperimentUpdate
 from app.services.route_service import HashRouter
 
 
-class CRUDExperiment(CRUDBase[Experiment, ExperimentCreate, ExperimentUpdate]):
-    def get_selected_arm_by_experiment(self, db: Session, id: int, user_id: str):
-        router = HashRouter(user_id)
-        experiment = db.query(self.model).filter(self.model.id == id).first()
-        return router.route(experiment)
-
-
-experiment = CRUDExperiment(Experiment)
+experiment = CRUDBase[Experiment, ExperimentCreate, ExperimentUpdate](Experiment)

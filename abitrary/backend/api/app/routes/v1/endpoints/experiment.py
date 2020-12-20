@@ -5,6 +5,8 @@ from sqlalchemy.orm import Session
 from app import crud, models, schemas
 from app.routes import deps
 
+from app.services.route_service import HashRouter
+
 router = APIRouter()
 
 
@@ -26,7 +28,16 @@ async def get_experiment(id: int, db: Session = Depends(deps.get_db)) -> Any:
 async def get_selected_arm_by_experiment(
     id: int, user_id: str, db: Session = Depends(deps.get_db)
 ):
-    return crud.experiment.get_selected_arm_by_experiment(db=db, id=id, user_id=user_id)
+    if user_id is None:
+        raise HTTPException(status_code=400, detail="User id is required")
+
+    experiment = crud.experiment.get(db=db, id=id)
+    if not experiment:
+        raise HTTPException(status_code=404, detail="Experiment not found")
+
+    router = HashRouter(user_id)
+    arm = router.route(experiment)
+    return arm
 
 
 @router.post("/")
