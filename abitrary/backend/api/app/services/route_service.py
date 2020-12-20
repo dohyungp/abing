@@ -11,6 +11,7 @@ class HashType(str, Enum):
     md5 = "md5"
     xxh32 = "xxh32"
     xxh64 = "xxh64"
+    xxh128 = "xxh128"
 
 
 class HashRouter:
@@ -20,7 +21,7 @@ class HashRouter:
     >>> selected_arm = router.allocate(exp)
     """
 
-    def __init__(self, user_id: str, hash_type: HashType = HashType.xxh32):
+    def __init__(self, user_id: str, hash_type: HashType = HashType.xxh128):
         self.user_id = user_id
         if hash_type in (HashType.xxh32, HashType.xxh64):
             self.hash = getattr(xxhash, hash_type)
