@@ -7,7 +7,6 @@ class ArmBase(BaseModel):
     name: str
     traffic_weight: int
     experiment_id: int
-    features: Optional[List]
 
 
 class ArmFeatureCreate(BaseModel):
@@ -34,6 +33,7 @@ class ArmInDBBase(ArmBase):
 
 
 class Arm(ArmInDBBase):
+    features: Optional[List]
     pass
 
 
