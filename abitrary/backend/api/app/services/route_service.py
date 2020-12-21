@@ -60,9 +60,12 @@ class HashRouter:
 
         current_weight = 0
         for arm in arms:
-            next_weight = current_weight + (weight_table[arm] / total_weight)
+            try:
+                next_weight = current_weight + (weight_table[arm] / total_weight)
+            except ZeroDivisionError:
+                next_weight = current_weight
 
-            if current_weight < ratio < next_weight:
+            if current_weight <= ratio < next_weight:
                 return arm
 
             current_weight = next_weight
