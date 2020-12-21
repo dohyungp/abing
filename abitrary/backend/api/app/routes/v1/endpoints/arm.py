@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -8,26 +8,36 @@ from app.routes import deps
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("/", response_model=List[schemas.Arm])
 async def get_arms(
     db: Session = Depends(deps.get_db),
     skip: int = 0,
     limit: int = 100,
 ):
-    return crud.arm.get_list(db, skip=skip, limit=limit)
+    arm_list = crud.arm.get_list(db, skip=skip, limit=limit)
+    return arm_list
 
 
-@router.get("/{id}")
+@router.get("/{id}", response_model=schemas.Arm)
 async def get_arm(id: int, db: Session = Depends(deps.get_db)) -> Any:
     return crud.arm.get(db=db, id=id)
 
 
-@router.post("/")
+@router.post("/", response_model=schemas.Arm)
 async def create_arm(arm_in: schemas.ArmCreate, db: Session = Depends(deps.get_db)):
     experiment = crud.experiment.get(db=db, id=arm_in.experiment_id)
     if not experiment:
         raise HTTPException(status_code=404, detail="experiment not found")
-    return crud.arm.create(db=db, obj_in=arm_in)
+
+    arm_in = arm_in.dict()
+    features = arm_in.pop("features", [])
+
+    arm = crud.arm.create(db=db, obj_in=arm_in)
+
+    for feature in features:
+        feature_in = {**feature, "arm_id": arm.id}
+        feature_out = crud.feature.create(db=db, obj_in=feature_in)
+    return arm
 
 
 @router.put("/{id}")
