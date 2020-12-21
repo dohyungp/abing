@@ -26,7 +26,7 @@ async def get_feature(id: int, db: Session = Depends(deps.get_db)) -> Any:
 async def create_feature(
     feature_in: schemas.FeatureCreate, db: Session = Depends(deps.get_db)
 ):
-    arm = crud.arm.get(db=db, id=feature_in.experiment_id)
+    arm = crud.arm.get(db=db, id=feature_in.arm_id)
     if not arm:
         raise HTTPException(status_code=404, detail="Arm not found")
     return crud.feature.create(db=db, obj_in=feature_in)

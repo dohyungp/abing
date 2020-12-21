@@ -1,12 +1,14 @@
 from typing import List, Optional
 from datetime import datetime
 from pydantic import BaseModel
+from .feature import FeatureBase
 
 
 class ArmBase(BaseModel):
     name: str
     traffic_weight: int
     experiment_id: int
+    features: List[FeatureBase] = list()
 
 
 class ArmCreate(ArmBase):
