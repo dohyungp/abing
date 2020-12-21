@@ -32,8 +32,16 @@ class ArmInDBBase(ArmBase):
         orm_mode = True
 
 
+class ArmFeature(BaseModel):
+    key: str
+    value: str
+
+    class Config:
+        orm_mode = True
+
+
 class Arm(ArmInDBBase):
-    features: Optional[List]
+    features: Optional[List[ArmFeature]]
     pass
 
 
