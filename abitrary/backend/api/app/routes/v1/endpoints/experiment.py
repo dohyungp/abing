@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any, Optional, List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -10,7 +10,7 @@ from app.services.route_service import HashRouter
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("/", response_model=List[schemas.Experiment])
 async def get_experiments(
     db: Session = Depends(deps.get_db),
     skip: int = 0,
@@ -19,7 +19,7 @@ async def get_experiments(
     return crud.experiment.get_list(db, skip=skip, limit=limit)
 
 
-@router.get("/route")
+@router.get("/route", response_model=List[schemas.Arm])
 async def select_arms_by_experiments(
     db: Session = Depends(deps.get_db),
     *,
@@ -45,12 +45,12 @@ async def select_arms_by_experiments(
     return selected_arms
 
 
-@router.get("/{id}")
+@router.get("/{id}", response_model=schemas.Experiment)
 async def get_experiment(id: int, db: Session = Depends(deps.get_db)) -> Any:
     return crud.experiment.get(db=db, id=id)
 
 
-@router.get("/{id}/route")
+@router.get("/{id}/route", response_model=schemas.Arm)
 async def select_arm_by_experiment(
     id: int, user_id: str, db: Session = Depends(deps.get_db)
 ):

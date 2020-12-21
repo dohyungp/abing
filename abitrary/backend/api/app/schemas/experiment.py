@@ -1,6 +1,7 @@
 from typing import List, Optional
 from datetime import datetime
 from pydantic import BaseModel
+from .arm import Arm
 
 
 class ExperimentBase(BaseModel):
@@ -29,6 +30,7 @@ class ExperimentInDBBase(ExperimentBase):
 
 
 class Experiment(ExperimentInDBBase):
+    arms: Optional[List[Arm]]
     pass
 
 
