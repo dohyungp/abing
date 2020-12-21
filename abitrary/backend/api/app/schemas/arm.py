@@ -3,12 +3,6 @@ from datetime import datetime
 from pydantic import BaseModel
 
 
-class ArmFeatureBase(BaseModel):
-    key: str
-    value: str
-    description: Optional[str] = None
-
-
 class ArmBase(BaseModel):
     name: str
     traffic_weight: int
@@ -16,8 +10,14 @@ class ArmBase(BaseModel):
     features: Optional[List]
 
 
+class ArmFeatureCreate(BaseModel):
+    key: str
+    value: str
+    description: Optional[str] = None
+
+
 class ArmCreate(ArmBase):
-    pass
+    features: Optional[List[ArmFeatureCreate]]
 
 
 class ArmUpdate(ArmBase):
