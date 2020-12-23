@@ -15,6 +15,7 @@ async def get_experiments(
     db: Session = Depends(deps.get_db),
     skip: int = 0,
     limit: int = 100,
+    current_user: models.User = Depends(deps.get_current_active_user),
 ):
     return crud.experiment.get_list(db, skip=skip, limit=limit)
 
@@ -43,7 +44,11 @@ async def select_arms_by_experiments(
 
 
 @router.get("/{id}", response_model=schemas.Experiment)
-async def get_experiment(id: int, db: Session = Depends(deps.get_db)) -> Any:
+async def get_experiment(
+    id: int,
+    db: Session = Depends(deps.get_db),
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
     return crud.experiment.get(db=db, id=id)
 
 
@@ -68,7 +73,9 @@ async def select_arm_by_experiment(
 
 @router.post("/")
 async def create_experiment(
-    experiment_in: schemas.ExperimentCreate, db: Session = Depends(deps.get_db)
+    experiment_in: schemas.ExperimentCreate,
+    db: Session = Depends(deps.get_db),
+    current_user: models.User = Depends(deps.get_current_active_user),
 ):
     return crud.experiment.create(db=db, obj_in=experiment_in)
 
@@ -79,6 +86,7 @@ def update_experiment(
     db: Session = Depends(deps.get_db),
     id: int,
     experiment_in: schemas.ExperimentUpdate,
+    current_user: models.User = Depends(deps.get_current_active_user)
 ) -> Any:
 
     experiment = crud.experiment.get(db=db, id=id)

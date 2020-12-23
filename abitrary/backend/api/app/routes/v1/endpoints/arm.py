@@ -13,18 +13,27 @@ async def get_arms(
     db: Session = Depends(deps.get_db),
     skip: int = 0,
     limit: int = 100,
+    current_user: models.User = Depends(deps.get_current_active_user),
 ):
     arm_list = crud.arm.get_list(db, skip=skip, limit=limit)
     return arm_list
 
 
 @router.get("/{id}", response_model=schemas.Arm)
-async def get_arm(id: int, db: Session = Depends(deps.get_db)) -> Any:
+async def get_arm(
+    id: int,
+    db: Session = Depends(deps.get_db),
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
     return crud.arm.get(db=db, id=id)
 
 
 @router.post("/", response_model=schemas.Arm)
-async def create_arm(arm_in: schemas.ArmCreate, db: Session = Depends(deps.get_db)):
+async def create_arm(
+    arm_in: schemas.ArmCreate,
+    db: Session = Depends(deps.get_db),
+    current_user: models.User = Depends(deps.get_current_active_user),
+):
     experiment = crud.experiment.get(db=db, id=arm_in.experiment_id)
     if not experiment:
         raise HTTPException(status_code=404, detail="experiment not found")
@@ -46,6 +55,7 @@ def update_arm(
     db: Session = Depends(deps.get_db),
     id: int,
     arm_in: schemas.ArmUpdate,
+    current_user: models.User = Depends(deps.get_current_active_user)
 ) -> Any:
 
     arm = crud.arm.get(db=db, id=id)

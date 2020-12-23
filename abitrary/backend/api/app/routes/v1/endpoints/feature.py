@@ -13,18 +13,25 @@ async def get_features(
     db: Session = Depends(deps.get_db),
     skip: int = 0,
     limit: int = 100,
+    current_user: models.User = Depends(deps.get_current_active_user),
 ):
     return crud.feature.get_list(db, skip=skip, limit=limit)
 
 
 @router.get("/{id}")
-async def get_feature(id: int, db: Session = Depends(deps.get_db)) -> Any:
+async def get_feature(
+    id: int,
+    db: Session = Depends(deps.get_db),
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
     return crud.feature.get(db=db, id=id)
 
 
 @router.post("/")
 async def create_feature(
-    feature_in: schemas.FeatureCreate, db: Session = Depends(deps.get_db)
+    feature_in: schemas.FeatureCreate,
+    db: Session = Depends(deps.get_db),
+    current_user: models.User = Depends(deps.get_current_active_user),
 ):
     arm = crud.arm.get(db=db, id=feature_in.arm_id)
     if not arm:
@@ -38,6 +45,7 @@ def update_feature(
     db: Session = Depends(deps.get_db),
     id: int,
     feature_in: schemas.FeatureUpdate,
+    current_user: models.User = Depends(deps.get_current_active_user)
 ) -> Any:
 
     feature = crud.feature.get(db=db, id=id)
