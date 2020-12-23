@@ -29,7 +29,7 @@ async def select_arms_by_experiments(
 
     if not experiments:
         raise HTTPException(
-            status_code=404, detail="There are no experiments in the requested state"
+            status_code=404, detail="There are no experiments in progress."
         )
 
     for experiment in experiments:
