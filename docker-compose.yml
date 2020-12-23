@@ -12,6 +12,23 @@ services:
       - ${DB_PORT}:${DB_PORT}
     volumes:
       - db:/var/lib/postgresql
+    networks:
+      - overlay
+  frontend:
+    build:
+      context: .
+      dockerfile: ./docker/DockerFile.frontend
+    networks:
+      - overlay
+    ports:
+      - 3000:3000
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./abitrary/frontend:/app
+    environment:
+      - NODE_ENV=development
+    command: /bin/bash -c "npm start"
   backend:
     environment:
       - POSTGRES_DB=${DB_NAME}
@@ -27,6 +44,11 @@ services:
     volumes:
       - ./abitrary/backend/api:/app
     command: /bin/bash -c "uvicorn app.main:app --reload --host "0.0.0.0""
+    networks:
+      - overlay
 
 volumes:
   db:
+
+networks:
+  overlay:
