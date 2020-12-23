@@ -1,0 +1,7 @@
+FROM node:latest
+
+COPY ./abitrary/frontend /app
+
+WORKDIR /app
+
+RUN npm i
