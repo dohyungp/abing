@@ -2,6 +2,7 @@ fastapi
 uvicorn
 sqlalchemy
 alembic
+pydantic[email]
 python-jose[cryptography]
 passlib[bcrypt]
 psycopg2-binary
