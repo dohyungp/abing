@@ -21,13 +21,10 @@ async def get_experiments(
 
 @router.get("/route", response_model=List[schemas.Arm])
 async def select_arms_by_experiments(
-    db: Session = Depends(deps.get_db),
-    *,
-    user_id: str,
-    is_running: Optional[bool] = True,
+    db: Session = Depends(deps.get_db), *, user_id: str
 ):
     traffic_router = HashRouter(user_id)
-    experiments = crud.experiment.get_list_by_running_state(db, is_running=is_running)
+    experiments = crud.experiment.get_list_by_running_state(db, is_running=True)
     selected_arms = list()
 
     if not experiments:
