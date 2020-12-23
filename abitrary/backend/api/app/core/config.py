@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str = secrets.token_urlsafe(32)
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
     TOKEN_SCHEME: str = "bearer"
+    USERS_OPEN_REGISTRATION: bool = False
 
     POSTGRES_HOST: str
     POSTGRES_USER: str
