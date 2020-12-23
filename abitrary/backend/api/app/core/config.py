@@ -10,6 +10,8 @@ class Settings(BaseSettings):
     API_VERSION: str = "/api/v1"
 
     SECRET_KEY: str = secrets.token_urlsafe(32)
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
+    TOKEN_SCHEME: str = "bearer"
 
     POSTGRES_HOST: str
     POSTGRES_USER: str
