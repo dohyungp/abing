@@ -1,10 +1,10 @@
-import React from 'react';
-import { Button } from 'antd';
-import './App.css';
+import React from "react";
+import "./App.css";
+import CounterContainer from "./containers/CounterContainer";
 
 const App = () => (
   <div className="App">
-    <Button type="primary">Button</Button>
+    <CounterContainer />
   </div>
 );
 
