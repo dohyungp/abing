@@ -31,7 +31,9 @@ const columns = [
 ];
 
 const UserTable = ({ data, loading }) => {
-  return <Table columns={columns} dataSource={data} loading={loading} />;
+  return (
+    <Table columns={columns} dataSource={data} loading={loading} rowKey="id" />
+  );
 };
 
 export default UserTable;
