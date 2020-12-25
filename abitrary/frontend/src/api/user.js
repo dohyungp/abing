@@ -15,3 +15,10 @@ export const getUsers = async ({ access_token, skip = 0, limit = 100 }) => {
   });
   return response.data;
 };
+
+export const createUser = async (data, { access_token }) => {
+  const response = await axios.post("/api/v1/users/", data, {
+    headers: { Authorization: `Bearer ${access_token}` },
+  });
+  return response.data;
+};
