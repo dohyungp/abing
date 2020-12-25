@@ -1,11 +1,12 @@
 import React from "react";
-import LoginFormContainer from "./containers/LoginContainer";
+import { Route } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
 import "./App.css";
 
 const App = () => (
-  <div className="App">
-    <LoginFormContainer />
-  </div>
+  <>
+    <Route path="/login" component={LoginPage} exact={true} />
+  </>
 );
 
 export default App;
