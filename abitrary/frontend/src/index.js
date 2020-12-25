@@ -9,6 +9,12 @@ import createSagaMiddleware from "redux-saga";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import axios from "axios";
+
+axios.defaults.baseURL =
+  process.env.NODE_ENV === "development"
+    ? "http://backend:8000"
+    : "http://localhost:8000";
 
 const sagaMiddleware = createSagaMiddleware();
 
