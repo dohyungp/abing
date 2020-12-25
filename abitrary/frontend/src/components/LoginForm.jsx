@@ -2,7 +2,7 @@ import { Form, Input, Button } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import "./loginform.css";
 
-const LoginForm = ({ onFinish }) => {
+const LoginForm = ({ onFinish, loading }) => {
   return (
     <Form
       name="normal_login"
@@ -50,6 +50,7 @@ const LoginForm = ({ onFinish }) => {
           htmlType="submit"
           className="login-form-button"
           size="large"
+          loading={loading}
         >
           Log in
         </Button>

@@ -1,7 +1,8 @@
 import React from "react";
+import AuthContainer from "../containers/AuthContainer";
 
 const HomePage = () => {
-  return <div>홈페이지</div>;
+  return <AuthContainer>홈페이지</AuthContainer>;
 };
 
 export default HomePage;
