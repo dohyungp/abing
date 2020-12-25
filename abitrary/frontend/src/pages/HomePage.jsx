@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AuthContainer from "../containers/AuthContainer";
+import UserTable from "../components/UserTable";
 import { getUsers } from "../modules/user";
 
 const HomePage = () => {
@@ -14,7 +15,11 @@ const HomePage = () => {
       }),
     );
   }, [dispatch, login]);
-  return <AuthContainer>{JSON.stringify(users)}</AuthContainer>;
+  return (
+    <AuthContainer>
+      <UserTable data={users.data} loading={users.loading} />
+    </AuthContainer>
+  );
 };
 
 export default HomePage;
