@@ -2,7 +2,7 @@ import { message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
-import { loginRequest } from "../modules/login";
+import { loginRequest } from "../modules/user";
 import logo from "./abitrary-logo.png";
 import "./loginformcontainer.css";
 
