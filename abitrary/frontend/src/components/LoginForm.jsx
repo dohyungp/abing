@@ -13,7 +13,7 @@ const LoginForm = ({ onFinish }) => {
       onFinish={onFinish}
     >
       <Form.Item
-        name="email"
+        name="username"
         rules={[
           {
             required: true,
