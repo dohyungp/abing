@@ -7,7 +7,6 @@ import "./loginformcontainer.css";
 const LoginFormContainer = () => {
   const dispatch = useDispatch();
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
     dispatch(loginRequest(values));
   };
 
