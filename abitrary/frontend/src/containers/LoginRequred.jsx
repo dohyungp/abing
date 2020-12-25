@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-const AuthContainer = ({ children }) => {
+const LoginRequred = ({ children }) => {
   const { data } = useSelector((state) => state.login.login);
   return (
     <div>
@@ -12,4 +12,4 @@ const AuthContainer = ({ children }) => {
   );
 };
 
-export default AuthContainer;
+export default LoginRequred;
