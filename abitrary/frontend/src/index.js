@@ -8,13 +8,16 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { createBrowserHistory } from "history";
 import { Router } from "react-router-dom";
 import createSagaMiddleware from "redux-saga";
-import "./index.css";
-import App from "./App";
 import axios from "axios";
+import { loadState, saveState } from "./libs/localStorage";
+import App from "./App";
+import "./index.css";
+import throttle from "lodash/throttle";
 
 axios.defaults.baseURL = "http://localhost:8000";
 
 const customHistory = createBrowserHistory();
+const persistedStore = loadState();
 const sagaMiddleware = createSagaMiddleware({
   context: {
     history: customHistory,
@@ -23,7 +26,16 @@ const sagaMiddleware = createSagaMiddleware({
 
 const store = createStore(
   rootReducer,
+  persistedStore,
   composeWithDevTools(applyMiddleware(sagaMiddleware, logger)),
+);
+
+store.subscribe(
+  throttle(() => {
+    // only save login state.
+    let { login } = store.getState();
+    if (!(login?.login.loading || login?.login.error)) saveState({ login });
+  }, 1000),
 );
 
 sagaMiddleware.run(rootSaga);

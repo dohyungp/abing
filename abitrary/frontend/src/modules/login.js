@@ -4,7 +4,7 @@ import {
   handleAsyncActions,
   createPromiseSaga,
 } from "../libs/asyncUtil";
-import { takeEvery } from "redux-saga/effects";
+import { takeLatest } from "redux-saga/effects";
 
 /* 액션 타입 */
 const LOGIN_REQUEST = "LOGIN_REQUEST";
@@ -16,7 +16,7 @@ export const loginRequest = (data) => ({ type: LOGIN_REQUEST, payload: data });
 const requestLoginSaga = createPromiseSaga(LOGIN_REQUEST, loginAPI.login);
 
 export function* loginSaga() {
-  yield takeEvery(LOGIN_REQUEST, requestLoginSaga);
+  yield takeLatest(LOGIN_REQUEST, requestLoginSaga);
 }
 
 const initialState = {
