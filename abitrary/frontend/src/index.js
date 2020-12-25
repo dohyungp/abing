@@ -5,6 +5,8 @@ import { Provider } from "react-redux";
 import rootReducer, { rootSaga } from "./modules";
 import logger from "redux-logger";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { createBrowserHistory } from "history";
+import { Router } from "react-router-dom";
 import createSagaMiddleware from "redux-saga";
 import "./index.css";
 import App from "./App";
@@ -16,7 +18,12 @@ axios.defaults.baseURL =
     ? "http://backend:8000"
     : "http://localhost:8000";
 
-const sagaMiddleware = createSagaMiddleware();
+const customHistory = createBrowserHistory();
+const sagaMiddleware = createSagaMiddleware({
+  context: {
+    history: customHistory,
+  },
+});
 
 const store = createStore(
   rootReducer,
@@ -27,9 +34,11 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <Router history={customHistory}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root"),
 );
