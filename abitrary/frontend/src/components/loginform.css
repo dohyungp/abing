@@ -1,7 +1,3 @@
-.login-form {
-  margin: 0 3%;
-}
-
 @media screen and (min-width: 769px) {
   .login-form {
     max-width: 460px;
