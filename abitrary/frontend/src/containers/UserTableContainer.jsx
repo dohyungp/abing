@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import UserTable from "../components/UserTable";
-import { getUsers } from "../modules/user";
+import { getUsers } from "../actions/users/users";
 
 const UserTableContainer = () => {
   const { login } = useSelector((state) => state.login);
