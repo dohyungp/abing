@@ -6,7 +6,7 @@ const LoginRequred = ({ children }) => {
   const { data } = useSelector((state) => state.login.login);
   return (
     <div>
-      {data?.access_token === undefined && <Redirect to="/login" />}
+      {!data?.access_token && <Redirect to="/login" />}
       {children}
     </div>
   );
