@@ -1,4 +1,4 @@
-import * as types from "../actions/users/login";
+import * as types from "../actions/users/auth";
 import { reducerUtils, handleAsyncActions } from "../libs/asyncUtil";
 
 const initialState = {
