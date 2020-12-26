@@ -1,5 +1,5 @@
 import { all } from "redux-saga/effects";
-import watchLogin from "./login";
+import watchLogin from "./auth";
 import watchUsers from "./users";
 
 export default function* rootSaga() {

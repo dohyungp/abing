@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST } from "../actions/users/login";
+import { LOGIN_REQUEST } from "../actions/users/auth";
 import { createPromiseSaga } from "../libs/asyncUtil";
 import * as userAPI from "../api/user";
 import { takeLatest } from "redux-saga/effects";
