@@ -16,14 +16,14 @@ export const createUser = async (data) => {
 };
 
 export const getMe = async ({ access_token }) => {
-  const response = await axios.get("/api/v1/users/", {
+  const response = await axios.get("/api/v1/users/me", {
     headers: { Authorization: `Bearer ${access_token}` },
   });
   return response.data;
 };
 
 export const updateMe = async ({ access_token }, data) => {
-  const response = await axios.put("/api/v1/users/", data, {
+  const response = await axios.put("/api/v1/users/me", data, {
     headers: { Authorization: `Bearer ${access_token}` },
   });
   return response.data;
