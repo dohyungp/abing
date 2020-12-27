@@ -26,6 +26,7 @@ const UserTableContainer = () => {
         access_token: login.data?.access_token,
       }),
     );
+    setVisible(false);
   };
   return (
     <>
