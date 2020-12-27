@@ -30,7 +30,14 @@ const UserTableContainer = () => {
   };
   return (
     <Layout>
-      <Header />
+      <Row>
+        <Col
+          span={24}
+          style={{ boxShadow: "0 2px 8px #f0f1f2", background: "#fff" }}
+        >
+          <Header style={{ background: "transparent" }} />
+        </Col>
+      </Row>
       <Content>
         <div style={{ background: "#fff" }}>
           <Row justify="end">
