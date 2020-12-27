@@ -7,7 +7,7 @@ import Layout, { Content, Header } from "antd/lib/layout/layout";
 import UserModalForm from "../../components/users/UserModalForm";
 
 const UserTableContainer = () => {
-  const { auth } = useSelector((state) => state.auth);
+  const auth = useSelector((state) => state.auth);
   const { users } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);

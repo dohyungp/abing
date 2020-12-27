@@ -35,7 +35,7 @@ store.subscribe(
   throttle(() => {
     // only save login state.
     let { auth } = store.getState();
-    if (!(auth?.auth.loading || auth?.auth.error)) saveState({ auth });
+    if (!(auth?.loading || auth?.error)) saveState({ auth });
   }, 1000),
 );
 
