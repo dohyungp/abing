@@ -1,6 +1,6 @@
 import React from "react";
 import LoginRequred from "../containers/LoginRequred";
-import UserTableContainer from "../containers/UserTableContainer";
+import UserTableContainer from "../containers/users/UserTableContainer";
 
 const HomePage = () => {
   return (

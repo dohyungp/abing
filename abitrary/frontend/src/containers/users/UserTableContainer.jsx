@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import UserTable from "../components/UserTable";
-import { createUser, getUsers } from "../actions/users/users";
+import UserTable from "../../components/users/UserTable";
+import { createUser, getUsers } from "../../actions/users/users";
 import Layout, { Content, Header } from "antd/lib/layout/layout";
-import UserModalForm from "../components/UserModalForm";
+import UserModalForm from "../../components/users/UserModalForm";
 
 const UserTableContainer = () => {
   const { login } = useSelector((state) => state.login);
