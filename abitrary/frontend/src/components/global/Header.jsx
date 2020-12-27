@@ -11,6 +11,7 @@ const Header = () => {
         </Col>
         <Col xs={0} sm={0} md={20} lg={18} xl={16}>
           <Menu mode="horizontal" className="abitrary-menu">
+            <Menu.Item className="menu-item">Home</Menu.Item>
             <Menu.Item className="menu-item">Users</Menu.Item>
             <Menu.Item className="menu-item">Experiments</Menu.Item>
           </Menu>
