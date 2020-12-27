@@ -3,7 +3,8 @@ import { Button, Col, Row } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import UserTable from "../../components/users/UserTable";
 import { createUser, getUsers } from "../../actions/users/users";
-import Layout, { Content, Header } from "antd/lib/layout/layout";
+import Layout, { Content } from "antd/lib/layout/layout";
+import Header from "../../components/global/Header";
 import UserModalForm from "../../components/users/UserModalForm";
 
 const UserTableContainer = () => {
@@ -31,14 +32,7 @@ const UserTableContainer = () => {
   };
   return (
     <Layout>
-      <Row>
-        <Col
-          span={24}
-          style={{ boxShadow: "0 2px 8px #f0f1f2", background: "#fff" }}
-        >
-          <Header style={{ background: "transparent" }} />
-        </Col>
-      </Row>
+      <Header />
       <Content>
         <div style={{ background: "#fff" }}>
           <Row justify="end">
