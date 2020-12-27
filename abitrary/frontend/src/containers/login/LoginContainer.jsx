@@ -7,7 +7,7 @@ import logo from "../../assets/abitrary-logo.png";
 import "./loginformcontainer.css";
 
 const LoginFormContainer = () => {
-  const { loading, error } = useSelector((state) => state.login.login);
+  const { loading, error } = useSelector((state) => state.auth?.auth);
   const dispatch = useDispatch();
   const onFinish = (values) => {
     dispatch(loginRequest(values));

@@ -1,20 +1,27 @@
 import * as types from "../actions/users/auth";
-import { reducerUtils, handleAsyncActions } from "../libs/asyncUtil";
+import { reducerUtils } from "../libs/asyncUtil";
 
 const initialState = {
-  login: reducerUtils.initial(),
+  auth: reducerUtils.initial(),
 };
 
-export default function login(state = initialState, action) {
+export default function auth(state = initialState, action) {
   switch (action.type) {
     case types.LOGIN_REQUEST:
+      return {
+        ...state,
+        auth: reducerUtils.loading(state.auth?.data),
+      };
     case types.LOGIN_SUCCESS:
+      return {
+        ...state,
+        auth: reducerUtils.success(action.payload),
+      };
     case types.LOGIN_ERROR:
-      return handleAsyncActions(
-        types.LOGIN_REQUEST,
-        "login",
-        true,
-      )(state, action);
+      return {
+        ...state,
+        auth: reducerUtils.error(action.payload),
+      };
     default:
       return state;
   }

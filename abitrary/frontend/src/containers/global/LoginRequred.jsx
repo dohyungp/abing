@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 const LoginRequred = () => {
-  const { data } = useSelector((state) => state.login.login);
-  return <>{!data?.access_token && <Redirect to="/login" />}</>;
+  const { auth } = useSelector((state) => state.auth);
+  return <>{!auth.data?.access_token && <Redirect to="/login" />}</>;
 };
 
 export default LoginRequred;

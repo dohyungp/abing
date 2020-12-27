@@ -7,25 +7,26 @@ import Layout, { Content, Header } from "antd/lib/layout/layout";
 import UserModalForm from "../../components/users/UserModalForm";
 
 const UserTableContainer = () => {
-  const { login } = useSelector((state) => state.login);
+  const { auth } = useSelector((state) => state.auth);
   const { users } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     dispatch(
       getUsers({
-        access_token: login.data?.access_token,
+        access_token: auth.data?.access_token,
       }),
     );
-  }, [dispatch, login]);
+  }, [dispatch, auth]);
 
   const handleOnCreate = (payload) => {
-    dispatch(
-      createUser({
-        ...payload,
-        access_token: login.data?.access_token,
-      }),
-    );
+    auth.data?.access_token &&
+      dispatch(
+        createUser({
+          ...payload,
+          access_token: auth.data?.access_token,
+        }),
+      );
     setVisible(false);
   };
   return (
