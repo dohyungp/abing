@@ -2,7 +2,7 @@ import React from "react";
 import LoginRequred from "../containers/global/LoginRequred";
 import UserTableContainer from "../containers/users/UserTableContainer";
 
-const HomePage = () => {
+const UserListPage = () => {
   return (
     <>
       <LoginRequred />
@@ -11,4 +11,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default UserListPage;
