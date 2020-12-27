@@ -1,13 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Row } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import UserTable from "../components/UserTable";
 import { createUser, getUsers } from "../actions/users/users";
+import Layout, { Content, Header } from "antd/lib/layout/layout";
+import UserModalForm from "../components/UserModalForm";
 
 const UserTableContainer = () => {
   const { login } = useSelector((state) => state.login);
   const { users } = useSelector((state) => state.users);
   const dispatch = useDispatch();
+  const [visible, setVisible] = useState(false);
   useEffect(() => {
     dispatch(
       getUsers({
@@ -16,34 +19,45 @@ const UserTableContainer = () => {
     );
   }, [dispatch, login]);
 
-  const onButtonClick = (e) => {
-    e.preventDefault();
+  const handleOnCreate = (payload) => {
     dispatch(
       createUser({
+        ...payload,
         access_token: login.data?.access_token,
-        email: "test5@test.com",
-        name: "string",
-        password: "string",
       }),
     );
   };
   return (
     <>
-      <Row justify="end">
-        <Button
-          onClick={onButtonClick}
-          style={{ margin: 16 }}
-          type="primary"
-          ghost
-        >
-          유저 추가
-        </Button>
-      </Row>
-      <Row justify="center">
-        <Col span={24}>
-          <UserTable data={users.data} loading={users.loading} />
-        </Col>
-      </Row>
+      <Layout>
+        <Header />
+        <Content>
+          <div style={{ background: "#fff" }}>
+            <Row justify="end">
+              <Button
+                onClick={() => {
+                  setVisible(true);
+                }}
+                style={{ margin: 16 }}
+                type="primary"
+                ghost
+              >
+                Add a user
+              </Button>
+            </Row>
+            <Row justify="center">
+              <Col span={24}>
+                <UserTable data={users.data} loading={users.loading} />
+              </Col>
+            </Row>
+            <UserModalForm
+              visible={visible}
+              onCreate={handleOnCreate}
+              onCancel={() => setVisible(false)}
+            />
+          </div>
+        </Content>
+      </Layout>
     </>
   );
 };
