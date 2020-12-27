@@ -3,8 +3,8 @@ import * as userAPI from "../../api/user";
 import { createPromiseSaga } from "../../libs/asyncUtil";
 import { GET_USERS } from "../../actions/users/users";
 
-const createUserSaga = createPromiseSaga(GET_USERS, userAPI.getUsers);
+const fetchUsersSaga = createPromiseSaga(GET_USERS, userAPI.getUsers);
 
 export default function* watchFetchUsers() {
-  yield takeLatest(GET_USERS, createUserSaga);
+  yield takeLatest(GET_USERS, fetchUsersSaga);
 }
