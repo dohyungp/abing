@@ -18,6 +18,7 @@ const columns = [
     title: "Active",
     dataIndex: "is_active",
     key: "is_active",
+    responsive: ["sm"],
     render: (value) =>
       value ? <Tag color="green">active</Tag> : <Tag color="red">inactive</Tag>,
   },
