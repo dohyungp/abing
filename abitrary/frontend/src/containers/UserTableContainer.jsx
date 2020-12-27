@@ -29,37 +29,35 @@ const UserTableContainer = () => {
     setVisible(false);
   };
   return (
-    <>
-      <Layout>
-        <Header />
-        <Content>
-          <div style={{ background: "#fff" }}>
-            <Row justify="end">
-              <Button
-                onClick={() => {
-                  setVisible(true);
-                }}
-                style={{ margin: 16 }}
-                type="primary"
-                ghost
-              >
-                Add a user
-              </Button>
-            </Row>
-            <Row justify="center">
-              <Col span={24}>
-                <UserTable data={users.data} loading={users.loading} />
-              </Col>
-            </Row>
-            <UserModalForm
-              visible={visible}
-              onCreate={handleOnCreate}
-              onCancel={() => setVisible(false)}
-            />
-          </div>
-        </Content>
-      </Layout>
-    </>
+    <Layout>
+      <Header />
+      <Content>
+        <div style={{ background: "#fff" }}>
+          <Row justify="end">
+            <Button
+              onClick={() => {
+                setVisible(true);
+              }}
+              style={{ margin: 16 }}
+              type="primary"
+              ghost
+            >
+              Add a user
+            </Button>
+          </Row>
+          <Row justify="center">
+            <Col span={24}>
+              <UserTable data={users.data} loading={users.loading} />
+            </Col>
+          </Row>
+          <UserModalForm
+            visible={visible}
+            onCreate={handleOnCreate}
+            onCancel={() => setVisible(false)}
+          />
+        </div>
+      </Content>
+    </Layout>
   );
 };
 
