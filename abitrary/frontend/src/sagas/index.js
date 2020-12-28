@@ -1,7 +1,14 @@
-import { all } from "redux-saga/effects";
+import { all, fork } from "redux-saga/effects";
 import watchLogin from "./auth";
-import watchUsers from "./users";
+import watchCreateUser from "./users/create";
+import watchFetchUsers from "./users/list";
+import { watchFetchMe } from "./users/fetch";
 
 export default function* rootSaga() {
-  yield all([watchLogin(), watchUsers()]);
+  yield all([
+    fork(watchLogin),
+    fork(watchCreateUser),
+    fork(watchFetchUsers),
+    fork(watchFetchMe),
+  ]);
 }
