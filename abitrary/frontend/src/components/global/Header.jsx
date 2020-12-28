@@ -5,7 +5,7 @@ import logo from "../../assets/abitrary-logo.png";
 import "./header.css";
 import { useState } from "react";
 
-const Header = () => {
+const Header = ({ menus = [] } = {}) => {
   const location = useLocation();
   const [drawerVisible, setDrawerVisble] = useState(false);
   return (
@@ -33,13 +33,13 @@ const Header = () => {
           defaultSelectedKeys={["/"]}
           selectedKeys={[location.pathname]}
         >
-          <Menu.Item className="menu-item" key="/">
-            <NavLink to="/">Home</NavLink>
-          </Menu.Item>
-          <Menu.Item className="menu-item" key="/users">
-            <NavLink to="/users">Users</NavLink>
-          </Menu.Item>
-          <Menu.Item className="menu-item">Experiments</Menu.Item>
+          {menus.map((menu) => {
+            return (
+              <Menu.Item className="menu-item" key={menu.path}>
+                <NavLink to={menu.path}>{menu.name}</NavLink>
+              </Menu.Item>
+            );
+          })}
         </Menu>
       </Drawer>
       <Row>
@@ -53,13 +53,13 @@ const Header = () => {
             defaultSelectedKeys={["/"]}
             selectedKeys={[location.pathname]}
           >
-            <Menu.Item className="menu-item" key="/">
-              <NavLink to="/">Home</NavLink>
-            </Menu.Item>
-            <Menu.Item className="menu-item" key="/users">
-              <NavLink to="/users">Users</NavLink>
-            </Menu.Item>
-            <Menu.Item className="menu-item">Experiments</Menu.Item>
+            {menus.map((menu) => {
+              return (
+                <Menu.Item className="menu-item" key={menu.path}>
+                  <NavLink to={menu.path}>{menu.name}</NavLink>
+                </Menu.Item>
+              );
+            })}
           </Menu>
         </Col>
       </Row>
