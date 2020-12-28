@@ -43,10 +43,10 @@ const Header = ({ menus = [] } = {}) => {
         </Menu>
       </Drawer>
       <Row>
-        <Col xs={24} sm={24} md={4} lg={6} xl={8}>
+        <Col xs={24} sm={24} md={6} lg={6} xl={8}>
           <img src={logo} alt="ABITRARY" className="logo" />
         </Col>
-        <Col xs={0} sm={0} md={20} lg={18} xl={16}>
+        <Col xs={0} sm={0} md={18} lg={18} xl={16}>
           <Menu
             mode="horizontal"
             className="abitrary-menu"
