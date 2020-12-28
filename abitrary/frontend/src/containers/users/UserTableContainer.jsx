@@ -13,21 +13,21 @@ const UserTableContainer = () => {
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
   useEffect(() => {
-    dispatch(
-      getUsers({
-        access_token: auth.data?.access_token,
-      }),
-    );
-  }, [dispatch, auth]);
-
-  const handleOnCreate = (payload) => {
     auth.data?.access_token &&
       dispatch(
-        createUser({
-          ...payload,
+        getUsers({
           access_token: auth.data?.access_token,
         }),
       );
+  }, [dispatch, auth]);
+
+  const handleOnCreate = (payload) => {
+    dispatch(
+      createUser({
+        ...payload,
+        access_token: auth.data?.access_token,
+      }),
+    );
     setVisible(false);
   };
   return (
