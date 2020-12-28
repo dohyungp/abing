@@ -30,7 +30,7 @@
     border-bottom: 2px solid transparent;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767.5px) {
     .abitrary-header {
         text-align: center;
     }
