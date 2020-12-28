@@ -1,4 +1,5 @@
 import { Col, Menu, Row } from "antd";
+import { MenuOutlined } from "@ant-design/icons";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/abitrary-logo.png";
 import "./header.css";
@@ -7,6 +8,9 @@ const Header = () => {
   const location = useLocation();
   return (
     <header className="abitrary-header">
+      <span className="phone-menu-icon">
+        <MenuOutlined />
+      </span>
       <Row>
         <Col xs={24} sm={24} md={4} lg={6} xl={8}>
           <img src={logo} alt="ABITRARY" className="logo" />
