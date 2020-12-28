@@ -1,5 +1,7 @@
+import Layout from "../components/global/Layout";
+
 const ExperimentListPage = () => {
-  return <div></div>;
+  return <Layout>Experiment List Page</Layout>;
 };
 
 export default ExperimentListPage;
