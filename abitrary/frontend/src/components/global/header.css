@@ -54,7 +54,7 @@
 }
 
 @media only screen and (min-width: 767.5px) {
-    .phone-menu-icon {
+    .mobile-menu-icon {
         display: none;
     }
 }
