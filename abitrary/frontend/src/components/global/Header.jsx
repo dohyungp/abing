@@ -1,8 +1,10 @@
 import { Col, Menu, Row } from "antd";
+import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/abitrary-logo.png";
 import "./header.css";
 
 const Header = () => {
+  const location = useLocation();
   return (
     <header className="abitrary-header">
       <Row>
@@ -10,9 +12,18 @@ const Header = () => {
           <img src={logo} alt="ABITRARY" className="logo" />
         </Col>
         <Col xs={0} sm={0} md={20} lg={18} xl={16}>
-          <Menu mode="horizontal" className="abitrary-menu">
-            <Menu.Item className="menu-item">Home</Menu.Item>
-            <Menu.Item className="menu-item">Users</Menu.Item>
+          <Menu
+            mode="horizontal"
+            className="abitrary-menu"
+            defaultSelectedKeys={["/"]}
+            selectedKeys={[location.pathname]}
+          >
+            <Menu.Item className="menu-item" key="/">
+              <NavLink to="/">Home</NavLink>
+            </Menu.Item>
+            <Menu.Item className="menu-item" key="/users">
+              <NavLink to="/users">Users</NavLink>
+            </Menu.Item>
             <Menu.Item className="menu-item">Experiments</Menu.Item>
           </Menu>
         </Col>
