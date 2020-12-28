@@ -3,8 +3,7 @@ import { Button, Col, Row } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import UserTable from "../../components/users/UserTable";
 import { createUser, getUsers } from "../../actions/users/users";
-import Layout, { Content } from "antd/lib/layout/layout";
-import Header from "../../components/global/Header";
+import Layout from "../../components/global/Layout";
 import UserModalForm from "../../components/users/UserModalForm";
 
 const UserTableContainer = () => {
@@ -32,33 +31,28 @@ const UserTableContainer = () => {
   };
   return (
     <Layout>
-      <Header />
-      <Content>
-        <div style={{ background: "#fff" }}>
-          <Row justify="end">
-            <Button
-              onClick={() => {
-                setVisible(true);
-              }}
-              style={{ margin: 16 }}
-              type="primary"
-              ghost
-            >
-              Add a user
-            </Button>
-          </Row>
-          <Row justify="center">
-            <Col span={24}>
-              <UserTable data={users.data} loading={users.loading} />
-            </Col>
-          </Row>
-          <UserModalForm
-            visible={visible}
-            onCreate={handleOnCreate}
-            onCancel={() => setVisible(false)}
-          />
-        </div>
-      </Content>
+      <Row justify="end">
+        <Button
+          onClick={() => {
+            setVisible(true);
+          }}
+          style={{ margin: 16 }}
+          type="primary"
+          ghost
+        >
+          Add a user
+        </Button>
+      </Row>
+      <Row justify="center">
+        <Col span={24}>
+          <UserTable data={users.data} loading={users.loading} />
+        </Col>
+      </Row>
+      <UserModalForm
+        visible={visible}
+        onCreate={handleOnCreate}
+        onCancel={() => setVisible(false)}
+      />
     </Layout>
   );
 };
