@@ -14,6 +14,7 @@ const ExperimentList = () => {
       <ExperimentTable
         data={experiments.data}
         onToggle={(e) => console.log(e)}
+        loading={experiments.loading}
       />
     </>
   );
