@@ -4,12 +4,12 @@ import { Redirect } from "react-router-dom";
 import { getMe } from "../../actions/users/me";
 
 const LoginRequred = () => {
-  const me = useSelector((state) => state.me);
+  const token = useSelector((state) => state.auth?.data?.access_token);
   const dispatch = useDispatch();
   useEffect(() => {
-    !me.data.id && dispatch(getMe());
-  }, [me, dispatch]);
-  return <>{!me.data.id && <Redirect to="/login" />}</>;
+    dispatch(getMe());
+  }, [dispatch]);
+  return <>{!token && <Redirect to="/login" />}</>;
 };
 
 export default LoginRequred;
