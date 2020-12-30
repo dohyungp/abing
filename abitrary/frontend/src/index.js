@@ -34,8 +34,8 @@ const store = createStore(
 store.subscribe(
   throttle(() => {
     // only save login state.
-    let { auth, me } = store.getState();
-    if (!(auth?.loading || auth?.error)) saveState({ auth, me });
+    let { auth } = store.getState();
+    if (!(auth?.loading || auth?.error)) saveState({ auth });
   }, 1000),
 );
 
