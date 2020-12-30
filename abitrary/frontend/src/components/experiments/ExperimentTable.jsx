@@ -17,8 +17,8 @@ const columns = [
     key: "name",
   },
   {
-    title: "ETA",
-    key: "eta",
+    title: "Progress",
+    key: "progress",
     responsive: ["md"],
     width: "30%",
     render: (text, record) => (
@@ -43,8 +43,8 @@ const columns = [
     responsive: ["md"],
   },
   {
-    title: "In progress",
-    key: "progress",
+    title: "Running State",
+    key: "state",
     dataIndex: "is_running",
     align: "center",
     render: (text) => <Switch defaultChecked={text} />,
