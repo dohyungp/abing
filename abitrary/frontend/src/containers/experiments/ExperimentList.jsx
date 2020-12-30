@@ -17,7 +17,10 @@ const ExperimentList = () => {
   }, [dispatch, auth]);
   return (
     <>
-      <ExperimentTable data={experiments.data} />
+      <ExperimentTable
+        data={experiments.data}
+        onToggle={(e) => console.log(e)}
+      />
     </>
   );
 };
