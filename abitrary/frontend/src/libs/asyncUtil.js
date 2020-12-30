@@ -1,12 +1,24 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
+
+const token = (state) => {
+  return state.auth?.data?.access_token;
+};
 
 // 프로미스를 기다렸다가 결과를 디스패치하는 사가
-export const createPromiseSaga = (type, promiseCreator) => {
+export const createPromiseSaga = (
+  type,
+  promiseCreator,
+  tokenRequired = false,
+) => {
   const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
   return function* saga(action) {
     try {
-      // 재사용성을 위하여 promiseCreator 의 파라미터엔 action.payload 값을 넣도록 설정합니다.
-      const payload = yield call(promiseCreator, action.payload);
+      let access_token = null;
+      if (tokenRequired) access_token = yield select(token);
+      const payload = yield call(promiseCreator, {
+        ...action.payload,
+        access_token,
+      });
       yield put({ type: SUCCESS, payload });
     } catch (e) {
       yield put({ type: ERROR, error: true, payload: e.message });

@@ -7,26 +7,15 @@ import Layout from "../../components/global/Layout";
 import UserModalForm from "../../components/users/UserModalForm";
 
 const UserTableContainer = () => {
-  const auth = useSelector((state) => state.auth);
   const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
   useEffect(() => {
-    auth.data?.access_token &&
-      dispatch(
-        getUsers({
-          access_token: auth.data?.access_token,
-        }),
-      );
-  }, [dispatch, auth]);
+    dispatch(getUsers());
+  }, [dispatch]);
 
   const handleOnCreate = (payload) => {
-    dispatch(
-      createUser({
-        ...payload,
-        access_token: auth.data?.access_token,
-      }),
-    );
+    dispatch(createUser(payload));
     setVisible(false);
   };
   return (

@@ -4,17 +4,11 @@ import { getExperiments } from "../../actions/experiments";
 import ExperimentTable from "../../components/experiments/ExperimentTable";
 
 const ExperimentList = () => {
-  const auth = useSelector((state) => state.auth);
   const experiments = useSelector((state) => state.experiments);
   const dispatch = useDispatch();
   useEffect(() => {
-    auth.data?.access_token &&
-      dispatch(
-        getExperiments({
-          access_token: auth.data?.access_token,
-        }),
-      );
-  }, [dispatch, auth]);
+    dispatch(getExperiments());
+  }, [dispatch]);
   return (
     <>
       <ExperimentTable

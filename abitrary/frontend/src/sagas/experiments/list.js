@@ -6,6 +6,7 @@ import { GET_EXPERIMENTS } from "../../actions/experiments";
 const fetchExperimentsSaga = createPromiseSaga(
   GET_EXPERIMENTS,
   experimentAPI.getExperiments,
+  true,
 );
 
 export default function* watchFetchExperiments() {
