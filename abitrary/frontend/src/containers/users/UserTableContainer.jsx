@@ -3,7 +3,6 @@ import { Button, Col, Row } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import UserTable from "../../components/users/UserTable";
 import { createUser, getUsers } from "../../actions/users/users";
-import Layout from "../../components/global/Layout";
 import UserModalForm from "../../components/users/UserModalForm";
 
 const UserTableContainer = () => {
@@ -19,7 +18,7 @@ const UserTableContainer = () => {
     setVisible(false);
   };
   return (
-    <Layout>
+    <>
       <Row justify="end">
         <Button
           onClick={() => {
@@ -42,7 +41,7 @@ const UserTableContainer = () => {
         onCreate={handleOnCreate}
         onCancel={() => setVisible(false)}
       />
-    </Layout>
+    </>
   );
 };
 
