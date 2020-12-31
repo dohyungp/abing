@@ -5,7 +5,14 @@ const Layout = ({ header = true, children }) => {
   const menus = [
     { name: "Home", path: "/" },
     { name: "Users", path: "/users" },
-    { name: "Experiments", path: "/experiments" },
+    {
+      name: "Experiments",
+      path: "/experiments",
+      children: [
+        { name: "List", path: "/experiments" },
+        { name: "Create", path: "/experiments/create" },
+      ],
+    },
   ];
 
   return (

@@ -28,13 +28,25 @@ const Header = ({ menus = [] } = {}) => {
         onClose={() => setDrawerVisble(false)}
       >
         <Menu
-          mode="vertical-right"
+          mode="inline"
           className="abitrary-mobile-menu"
           defaultSelectedKeys={["/"]}
           selectedKeys={[location.pathname]}
         >
           {menus.map((menu) => {
-            return (
+            return (menu?.children || []).length ? (
+              <Menu.SubMenu
+                title={menu.name}
+                key={menu.path}
+                className="menu-item"
+              >
+                {menu.children.map((submenu) => (
+                  <Menu.Item className="menu-item" key={submenu.path}>
+                    <NavLink to={submenu.path}>{submenu.name}</NavLink>
+                  </Menu.Item>
+                ))}
+              </Menu.SubMenu>
+            ) : (
               <Menu.Item className="menu-item" key={menu.path}>
                 <NavLink to={menu.path}>{menu.name}</NavLink>
               </Menu.Item>
@@ -54,7 +66,19 @@ const Header = ({ menus = [] } = {}) => {
             selectedKeys={[location.pathname]}
           >
             {menus.map((menu) => {
-              return (
+              return (menu?.children || []).length ? (
+                <Menu.SubMenu
+                  title={menu.name}
+                  key={menu.path}
+                  className="menu-item"
+                >
+                  {menu.children.map((submenu) => (
+                    <Menu.Item className="menu-item" key={submenu.path}>
+                      <NavLink to={submenu.path}>{submenu.name}</NavLink>
+                    </Menu.Item>
+                  ))}
+                </Menu.SubMenu>
+              ) : (
                 <Menu.Item className="menu-item" key={menu.path}>
                   <NavLink to={menu.path}>{menu.name}</NavLink>
                 </Menu.Item>
