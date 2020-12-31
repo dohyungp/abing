@@ -1,5 +1,6 @@
 import { Progress, Switch, Table } from "antd";
 import dayjs from "dayjs";
+import { Link } from "react-router-dom";
 import ExperimentDescription from "./ExperimentDescription";
 
 const ExperimentTable = ({ data, loading, onToggle }) => {
@@ -16,6 +17,9 @@ const ExperimentTable = ({ data, loading, onToggle }) => {
       title: "Name",
       dataIndex: "name",
       key: "name",
+      render: (text, record) => (
+        <Link to={`/experiments/${record.id}`}>{text}</Link>
+      ),
     },
     {
       title: "Progress",
