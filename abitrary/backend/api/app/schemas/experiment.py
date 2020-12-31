@@ -17,7 +17,11 @@ class ExperimentCreate(ExperimentBase):
 
 
 class ExperimentUpdate(ExperimentBase):
-    pass
+    name: Optional[str]
+    description: Optional[str]
+    is_running: Optional[bool]
+    start_date: Optional[datetime]
+    end_date: Optional[datetime]
 
 
 class ExperimentInDBBase(ExperimentBase):
