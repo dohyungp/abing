@@ -8,12 +8,15 @@ import {
   Row,
   Col,
   Divider,
+  Grid,
 } from "antd";
 
 const { Title } = Typography;
 const { RangePicker } = DatePicker;
+const { useBreakpoint } = Grid;
 
 const ExperimentCreationForm = () => {
+  const screens = useBreakpoint();
   return (
     <>
       <Row justify="center">
@@ -50,6 +53,11 @@ const ExperimentCreationForm = () => {
               </Form.Item>
               <Form.Item label="Description">
                 <Input.TextArea maxLength={500} showCount />
+              </Form.Item>
+              <Form.Item wrapperCol={{ span: 14, offset: 4 * screens.md }}>
+                <Button type="primary" htmlType="submit">
+                  Create
+                </Button>
               </Form.Item>
             </Form>
           </Card>
