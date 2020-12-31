@@ -1,7 +1,12 @@
+import ExperimentCreationContainer from "../containers/experiments/ExperimentCreationContainer";
 import Layout from "../containers/global/Layout";
 
 const ExperimentCreationPage = () => {
-  return <Layout>실험생성 페이지</Layout>;
+  return (
+    <Layout>
+      <ExperimentCreationContainer />
+    </Layout>
+  );
 };
 
 export default ExperimentCreationPage;
