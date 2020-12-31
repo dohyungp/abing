@@ -1,6 +1,5 @@
 import { message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import NotLoginOnly from "../global/NotLoginOnly";
 import LoginForm from "../../components/login/LoginForm";
 import { loginRequest } from "../../actions/users/auth";
 import logo from "../../assets/abitrary-logo.png";
@@ -15,7 +14,6 @@ const LoginFormContainer = () => {
 
   return (
     <div className="login-form-container">
-      <NotLoginOnly />
       {error &&
         message.error("You have entered an invalid username or password")}
       <img src={logo} alt="abitrary" className="login-logo" />
