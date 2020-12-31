@@ -4,6 +4,7 @@ import watchCreateUser from "./users/create";
 import watchFetchUsers from "./users/list";
 import { watchFetchMe } from "./users/fetch";
 import watchFetchExperiments from "./experiments/list";
+import watchUpdateExperiment from "./experiments/update";
 
 export default function* rootSaga() {
   yield all([
@@ -12,5 +13,6 @@ export default function* rootSaga() {
     fork(watchFetchUsers),
     fork(watchFetchMe),
     fork(watchFetchExperiments),
+    fork(watchUpdateExperiment),
   ]);
 }

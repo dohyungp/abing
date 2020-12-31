@@ -26,9 +26,9 @@ export const getExperiment = async ({ access_token, id }) => {
   return response.data;
 };
 
-export const updateExperiment = async ({ access_token, id }, data) => {
-  const response = await axios.put(`/api/v1/experiments/${id}`, data, {
-    headers: { Authorization: `Bearer ${access_token}` },
+export const updateExperiment = async (data) => {
+  const response = await axios.put(`/api/v1/experiments/${data.id}`, data, {
+    headers: { Authorization: `Bearer ${data.access_token}` },
   });
   return response.data;
 };

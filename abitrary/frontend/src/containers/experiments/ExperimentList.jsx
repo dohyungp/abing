@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getExperiments } from "../../actions/experiments";
+import { getExperiments, updateExperiment } from "../../actions/experiments";
 import ExperimentTable from "../../components/experiments/ExperimentTable";
 
 const ExperimentList = () => {
@@ -9,11 +9,20 @@ const ExperimentList = () => {
   useEffect(() => {
     dispatch(getExperiments());
   }, [dispatch]);
+
+  const handleOnToggle = (record, event) => {
+    dispatch(
+      updateExperiment({
+        id: record.id,
+        is_running: event,
+      }),
+    );
+  };
   return (
     <>
       <ExperimentTable
         data={experiments.data}
-        onToggle={(e) => console.log(e)}
+        onToggle={handleOnToggle}
         loading={experiments.loading}
       />
     </>

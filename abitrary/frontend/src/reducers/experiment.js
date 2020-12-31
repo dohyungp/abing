@@ -9,6 +9,16 @@ export function experiments(state = reducerUtils.initial([]), action) {
       return reducerUtils.success(action.payload);
     case types.GET_EXPERIMENTS_ERROR:
       return reducerUtils.error(action.payload);
+    case types.UPDATE_EXPERIMENT:
+      return reducerUtils.loading(state.data);
+    case types.UPDATE_EXPERIMENT_SUCCESS:
+      return reducerUtils.success(
+        state.data.map((v) =>
+          v.id === action.payload.id ? action.payload : v,
+        ),
+      );
+    case types.UPDATE_EXPERIMENT_ERROR:
+      return reducerUtils.error(state.data);
     default:
       return state;
   }

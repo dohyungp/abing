@@ -48,7 +48,9 @@ const ExperimentTable = ({ data, loading, onToggle }) => {
       key: "state",
       dataIndex: "is_running",
       align: "center",
-      render: (text) => <Switch defaultChecked={text} onChange={onToggle} />,
+      render: (text, record) => (
+        <Switch defaultChecked={text} onChange={(e) => onToggle(record, e)} />
+      ),
     },
   ];
 
