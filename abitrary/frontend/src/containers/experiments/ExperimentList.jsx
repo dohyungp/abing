@@ -1,3 +1,4 @@
+import { Button, Row, Col } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getExperiments, updateExperiment } from "../../actions/experiments";
@@ -20,11 +21,25 @@ const ExperimentList = () => {
   };
   return (
     <>
-      <ExperimentTable
-        data={experiments.data}
-        onToggle={handleOnToggle}
-        loading={experiments.loading}
-      />
+      <Row justify="end">
+        <Button
+          onClick={console.log}
+          style={{ margin: 16 }}
+          type="primary"
+          ghost
+        >
+          Add a new experiment
+        </Button>
+      </Row>
+      <Row justify="center">
+        <Col span={24}>
+          <ExperimentTable
+            data={experiments.data}
+            onToggle={handleOnToggle}
+            loading={experiments.loading}
+          />
+        </Col>
+      </Row>
     </>
   );
 };
