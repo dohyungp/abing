@@ -28,7 +28,7 @@ const UserTableContainer = () => {
           type="primary"
           ghost
         >
-          Add a user
+          Add a new user
         </Button>
       </Row>
       <Row justify="center">
