@@ -1,5 +1,5 @@
 import { Layout as AntdLayout } from "antd";
-import Header from "./Header";
+import Header from "../../components/global/Header";
 
 const Layout = ({ header = true, children }) => {
   const menus = [

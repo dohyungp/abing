@@ -1,4 +1,4 @@
-import Layout from "../components/global/Layout";
+import Layout from "../containers/global/Layout";
 import LoginRequred from "../containers/global/LoginRequred";
 const HomePage = () => {
   return (

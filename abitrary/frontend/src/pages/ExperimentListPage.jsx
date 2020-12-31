@@ -1,4 +1,4 @@
-import Layout from "../components/global/Layout";
+import Layout from "../containers/global/Layout";
 import ExperimentList from "../containers/experiments/ExperimentList";
 import LoginRequred from "../containers/global/LoginRequred";
 

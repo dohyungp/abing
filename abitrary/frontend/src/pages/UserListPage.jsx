@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../components/global/Layout";
+import Layout from "../containers/global/Layout";
 import LoginRequred from "../containers/global/LoginRequred";
 import UserTableContainer from "../containers/users/UserTableContainer";
 

@@ -1,6 +1,7 @@
 import { Button, Row, Col } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getExperiments, updateExperiment } from "../../actions/experiments";
 import ExperimentTable from "../../components/experiments/ExperimentTable";
 
@@ -22,14 +23,11 @@ const ExperimentList = () => {
   return (
     <>
       <Row justify="end">
-        <Button
-          onClick={console.log}
-          style={{ margin: 16 }}
-          type="primary"
-          ghost
-        >
-          Add a new experiment
-        </Button>
+        <Link to="/experiments/create">
+          <Button style={{ margin: 16 }} type="primary" ghost>
+            Add a new experiment
+          </Button>
+        </Link>
       </Row>
       <Row justify="center">
         <Col span={24}>
