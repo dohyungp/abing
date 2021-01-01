@@ -4,6 +4,7 @@ import LoginForm from "../../components/login/LoginForm";
 import { loginRequest } from "../../actions/users/auth";
 import logo from "../../assets/abitrary-logo.png";
 import "./loginformcontainer.css";
+import { useEffect } from "react";
 
 const LoginFormContainer = () => {
   const { loading, error } = useSelector((state) => state.auth);
@@ -11,6 +12,11 @@ const LoginFormContainer = () => {
   const onFinish = (values) => {
     dispatch(loginRequest(values));
   };
+
+  useEffect(() => {
+    // When user logout or before login, state will cleanup.
+    localStorage.removeItem("state");
+  });
 
   return (
     <div className="login-form-container">
