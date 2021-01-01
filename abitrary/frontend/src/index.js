@@ -15,7 +15,8 @@ import App from "./App";
 import "./index.css";
 import throttle from "lodash/throttle";
 
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL =
+  process.env.NODE_ENV === "development" ? "http://localhost:8000" : "/";
 
 const customHistory = createBrowserHistory();
 const persistedStore = loadState();
