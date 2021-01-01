@@ -8,3 +8,4 @@ passlib[bcrypt]
 psycopg2-binary
 xxhash
 python-multipart
+aiofiles
