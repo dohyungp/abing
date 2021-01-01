@@ -29,9 +29,21 @@ export function experiment(state = reducerUtils.initial({}), action) {
     case types.CREATE_EXPERIMENT:
       return reducerUtils.loading(state.data);
     case types.CREATE_EXPERIMENT_SUCCESS:
-      return reducerUtils.success(action.payload);
+      return reducerUtils.success({
+        ...state.data,
+        [action.payload.id]: action.payload,
+      });
     case types.CREATE_EXPERIMENT_ERROR:
-      return reducerUtils.error(action.payload);
+      return reducerUtils.error(action.payload, state.data);
+    case types.GET_EXPERIMENT:
+      return reducerUtils.loading(state.data);
+    case types.GET_EXPERIMENT_SUCCESS:
+      return reducerUtils.success({
+        ...state.data,
+        [action.payload.id]: action.payload,
+      });
+    case types.GET_EXPERIMENT_ERROR:
+      return reducerUtils.error(action.payload, state.data);
     default:
       return state;
   }
