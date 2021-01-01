@@ -49,6 +49,32 @@ async def create_arm(
     return arm
 
 
+@router.post("/bulk", response_model=List[schemas.Arm])
+async def create_arms(
+    arms_in: List[schemas.ArmCreate],
+    db: Session = Depends(deps.get_db),
+    current_user: models.User = Depends(deps.get_current_active_user),
+):
+
+    created_arms = list()
+    for arm_in in arms_in:
+        experiment = crud.experiment.get(db=db, id=arm_in.experiment_id)
+
+        if not experiment:
+            raise HTTPException(status_code=404, detail="experiment not found")
+
+        arm_in = arm_in.dict()
+        features = arm_in.pop("features", []) or []
+        arm = crud.arm.create(db=db, obj_in=arm_in)
+
+        for feature in features:
+            feature_in = {**feature, "arm_id": arm.id}
+            feature_out = crud.feature.create(db=db, obj_in=feature_in)
+
+        created_arms.append(arm)
+    return created_arms
+
+
 @router.put("/{id}")
 def update_arm(
     *,

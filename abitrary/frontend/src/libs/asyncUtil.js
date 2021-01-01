@@ -1,6 +1,6 @@
 import { call, put, select } from "redux-saga/effects";
 
-const token = (state) => {
+export const token = (state) => {
   return state.auth?.data?.access_token;
 };
 

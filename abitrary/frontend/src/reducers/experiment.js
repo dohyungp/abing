@@ -23,3 +23,16 @@ export function experiments(state = reducerUtils.initial([]), action) {
       return state;
   }
 }
+
+export function experiment(state = reducerUtils.initial({}), action) {
+  switch (action.type) {
+    case types.CREATE_EXPERIMENT:
+      return reducerUtils.loading(state.data);
+    case types.CREATE_EXPERIMENT_SUCCESS:
+      return reducerUtils.success(action.payload);
+    case types.CREATE_EXPERIMENT_ERROR:
+      return reducerUtils.error(action.payload);
+    default:
+      return state;
+  }
+}

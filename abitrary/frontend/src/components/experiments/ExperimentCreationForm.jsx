@@ -16,7 +16,7 @@ const { Title } = Typography;
 const { RangePicker } = DatePicker;
 const { useBreakpoint } = Grid;
 
-const ExperimentCreationForm = () => {
+const ExperimentCreationForm = ({ onSubmit }) => {
   const screens = useBreakpoint();
   const colWrapper = {
     wrapperCol: { span: 16, offset: 4 * screens.sm },
@@ -37,7 +37,7 @@ const ExperimentCreationForm = () => {
               labelCol={{ span: 4 }}
               wrapperCol={{ span: 16 }}
               layout="horizontal"
-              onFinish={console.log}
+              onFinish={onSubmit}
             >
               <Form.Item
                 label="Name"

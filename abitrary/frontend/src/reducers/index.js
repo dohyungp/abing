@@ -2,5 +2,13 @@ import { combineReducers } from "redux";
 import auth from "./auth";
 import users from "./users";
 import me from "./me";
-import { experiments } from "./experiment";
-export default combineReducers({ auth, users, me, experiments });
+import { arms } from "./arm";
+import { experiment, experiments } from "./experiment";
+export default combineReducers({
+  auth,
+  users,
+  me,
+  experiment,
+  experiments,
+  arms,
+});
