@@ -51,7 +51,7 @@ const ExperimentCreationForm = ({ onSubmit }) => {
               <Form.Item label="Schedule">
                 <RangePicker />
               </Form.Item>
-              <Form.Item label="Description">
+              <Form.Item label="Description" name="description">
                 <Input.TextArea maxLength={500} showCount />
               </Form.Item>
               <ArmFormItem />
