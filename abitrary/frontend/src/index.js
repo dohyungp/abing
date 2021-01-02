@@ -14,7 +14,12 @@ import { loadState, saveState } from "./libs/localStorage";
 import App from "./App";
 import "./index.css";
 import throttle from "lodash/throttle";
+import dayjs from "dayjs";
+import weekday from "dayjs/plugin/weekday";
+import localeData from "dayjs/plugin/localeData";
 
+dayjs.extend(weekday);
+dayjs.extend(localeData);
 axios.defaults.baseURL =
   process.env.NODE_ENV === "development" ? "http://localhost:8000" : "/";
 
