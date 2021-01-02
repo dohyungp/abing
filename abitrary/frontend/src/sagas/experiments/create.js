@@ -1,4 +1,11 @@
-import { select, call, takeLatest, put, all, getContext } from "redux-saga/effects";
+import {
+  select,
+  call,
+  takeLatest,
+  put,
+  all,
+  getContext,
+} from "redux-saga/effects";
 import * as experimentAPI from "../../api/experiment";
 import { token } from "../../libs/asyncUtil";
 import {
@@ -25,7 +32,7 @@ function* createExperimentSaga(action) {
       }));
       yield all([
         put({ type: CREATE_EXPERIMENT_SUCCESS, payload }),
-        put({ type: CREATE_ARMS, payload: {access_token, data: armsData} }),
+        put({ type: CREATE_ARMS, payload: { access_token, data: armsData } }),
       ]);
     } else {
       yield put({ type: CREATE_EXPERIMENT_SUCCESS, payload });
