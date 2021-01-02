@@ -19,6 +19,15 @@ export function experiments(state = reducerUtils.initial([]), action) {
       );
     case types.UPDATE_EXPERIMENT_ERROR:
       return reducerUtils.error(state.data);
+    case types.DELETE_EXPERIMENT:
+      return reducerUtils.loading(state.data);
+    case types.DELETE_EXPERIMENT_SUCCESS:
+      return reducerUtils.success(
+        state.data.filter((v) => v.id !== action.payload.id),
+      );
+    case types.DELETE_EXPERIMENT_ERROR:
+      return reducerUtils.error(state.data);
+
     default:
       return state;
   }
@@ -52,6 +61,13 @@ export function experiment(state = reducerUtils.initial({}), action) {
         [action.payload.id]: action.payload,
       });
     case types.UPDATE_EXPERIMENT_ERROR:
+      return reducerUtils.error(state.data);
+    case types.DELETE_EXPERIMENT:
+      return reducerUtils.loading(state.data);
+    case types.DELETE_EXPERIMENT_SUCCESS:
+      let { [action.payload.id]: value, ...others } = state.data;
+      return reducerUtils.success(others);
+    case types.DELETE_EXPERIMENT_ERROR:
       return reducerUtils.error(state.data);
     default:
       return state;

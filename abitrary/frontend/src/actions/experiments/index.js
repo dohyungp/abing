@@ -10,9 +10,12 @@ export const CREATE_EXPERIMENT_ERROR = "CREATE_EXPERIMENT_ERROR";
 export const UPDATE_EXPERIMENT = "UPDATE_EXPERIMENT";
 export const UPDATE_EXPERIMENT_SUCCESS = "UPDATE_EXPERIMENT_SUCCESS";
 export const UPDATE_EXPERIMENT_ERROR = "UPDATE_EXPERIMENT_ERROR";
+export const DELETE_EXPERIMENT = "DELETE_EXPERIMENT";
+export const DELETE_EXPERIMENT_SUCCESS = "DELETE_EXPERIMENT_SUCCESS";
+export const DELETE_EXPERIMENT_ERROR = "DELETE_EXPERIMENT_ERROR";
 
 export function getExperiment(data) {
-  return { type: GET_EXPERIMENT, payload: data};
+  return { type: GET_EXPERIMENT, payload: data };
 }
 
 export function getExperiments(data) {
@@ -25,4 +28,8 @@ export function createExperiment(data) {
 
 export function updateExperiment(data) {
   return { type: UPDATE_EXPERIMENT, payload: data };
+}
+
+export function deleteExperiment(data) {
+  return { type: DELETE_EXPERIMENT, payload: data };
 }

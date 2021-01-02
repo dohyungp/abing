@@ -11,7 +11,11 @@ import {
 import TextArea from "antd/lib/input/TextArea";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getExperiment, updateExperiment } from "../../actions/experiments";
+import {
+  getExperiment,
+  updateExperiment,
+  deleteExperiment,
+} from "../../actions/experiments";
 import dayjs from "dayjs";
 
 const ExperimentDetailContainer = ({ id }) => {
@@ -28,6 +32,14 @@ const ExperimentDetailContainer = ({ id }) => {
     setEditable(false);
   };
 
+  const handleOnDelete = () => {
+    dispatch(
+      deleteExperiment({
+        id,
+      }),
+    );
+  };
+
   useEffect(() => {
     dispatch(getExperiment({ id }));
   }, [dispatch, id]);
@@ -37,14 +49,14 @@ const ExperimentDetailContainer = ({ id }) => {
       <Form
         onFinish={handleOnFinish}
         initialValues={{
-          name: experiment.data[id]?.name,
-          description: experiment.data[id]?.description,
-          is_running: experiment.data[id]?.is_running || false,
-          start_date: experiment.data[id]?.start_date
-            ? dayjs(experiment.data[id]?.start_date)
+          name: experiment.data?.[id]?.name,
+          description: experiment.data?.[id]?.description,
+          is_running: experiment.data?.[id]?.is_running || false,
+          start_date: experiment.data?.[id]?.start_date
+            ? dayjs(experiment.data?.[id]?.start_date)
             : null,
-          end_date: experiment.data[id]?.start_date
-            ? dayjs(experiment.data[id]?.end_date)
+          end_date: experiment.data?.[id]?.start_date
+            ? dayjs(experiment.data?.[id]?.end_date)
             : null,
         }}
       >
@@ -59,7 +71,7 @@ const ExperimentDetailContainer = ({ id }) => {
                 <Input size="large" />
               </Form.Item>
             ) : (
-              experiment.data[id]?.name
+              experiment.data?.[id]?.name
             )
           }
           onBack={() => window.history.back()}
@@ -79,7 +91,11 @@ const ExperimentDetailContainer = ({ id }) => {
             >
               {editable ? "Cancel" : "Edit"}
             </Button>,
-            <Button danger key="experiment_delete_button">
+            <Button
+              danger
+              key="experiment_delete_button"
+              onClick={handleOnDelete}
+            >
               Delete
             </Button>,
           ]}
@@ -97,9 +113,9 @@ const ExperimentDetailContainer = ({ id }) => {
             ) : (
               <Badge
                 status={
-                  experiment.data[id]?.is_running ? "processing" : "default"
+                  experiment.data?.[id]?.is_running ? "processing" : "default"
                 }
-                text={experiment.data[id]?.is_running ? "Running" : "Stopped"}
+                text={experiment.data?.[id]?.is_running ? "Running" : "Stopped"}
               />
             )}
           </Descriptions.Item>
@@ -109,7 +125,7 @@ const ExperimentDetailContainer = ({ id }) => {
                 <DatePicker />
               </Form.Item>
             ) : (
-              experiment.data[id]?.start_date
+              experiment.data?.[id]?.start_date
             )}
           </Descriptions.Item>
           <Descriptions.Item label="End date">
@@ -118,7 +134,7 @@ const ExperimentDetailContainer = ({ id }) => {
                 <DatePicker />
               </Form.Item>
             ) : (
-              experiment.data[id]?.end_date
+              experiment.data?.[id]?.end_date
             )}
           </Descriptions.Item>
           <Descriptions.Item label="Description">
@@ -127,7 +143,7 @@ const ExperimentDetailContainer = ({ id }) => {
                 <TextArea maxLength={500} showCount />
               </Form.Item>
             ) : (
-              experiment.data[id]?.description
+              experiment.data?.[id]?.description
             )}
           </Descriptions.Item>
         </Descriptions>

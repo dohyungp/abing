@@ -32,3 +32,11 @@ export const updateExperiment = async (data) => {
   });
   return response.data;
 };
+
+export const deleteExperiment = async ({ access_token, id }) => {
+  const response = await axios.delete(`/api/v1/experiments/${id}`, {
+    headers: { Authorization: `Bearer ${access_token}` },
+  });
+
+  return response.data;
+};
