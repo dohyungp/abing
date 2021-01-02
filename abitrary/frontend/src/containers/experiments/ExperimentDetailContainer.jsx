@@ -11,13 +11,23 @@ import {
 import TextArea from "antd/lib/input/TextArea";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getExperiment } from "../../actions/experiments";
+import { getExperiment, updateExperiment } from "../../actions/experiments";
 import dayjs from "dayjs";
 
 const ExperimentDetailContainer = ({ id }) => {
   const experiment = useSelector((state) => state.experiment);
   const dispatch = useDispatch();
   const [editable, setEditable] = useState(false);
+  const handleOnFinish = (data) => {
+    dispatch(
+      updateExperiment({
+        ...data,
+        id,
+      }),
+    );
+    setEditable(false);
+  };
+
   useEffect(() => {
     dispatch(getExperiment({ id }));
   }, [dispatch, id]);
@@ -25,10 +35,7 @@ const ExperimentDetailContainer = ({ id }) => {
   return (
     <>
       <Form
-        onFinish={(data) => {
-          console.log(data);
-          setEditable(false);
-        }}
+        onFinish={handleOnFinish}
         initialValues={{
           name: experiment.data[id]?.name,
           description: experiment.data[id]?.description,

@@ -44,6 +44,15 @@ export function experiment(state = reducerUtils.initial({}), action) {
       });
     case types.GET_EXPERIMENT_ERROR:
       return reducerUtils.error(action.payload, state.data);
+    case types.UPDATE_EXPERIMENT:
+      return reducerUtils.loading(state.data);
+    case types.UPDATE_EXPERIMENT_SUCCESS:
+      return reducerUtils.success({
+        ...state.data,
+        [action.payload.id]: action.payload,
+      });
+    case types.UPDATE_EXPERIMENT_ERROR:
+      return reducerUtils.error(state.data);
     default:
       return state;
   }
