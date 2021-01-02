@@ -45,7 +45,7 @@ def update_feature(
     db: Session = Depends(deps.get_db),
     id: int,
     feature_in: schemas.FeatureUpdate,
-    current_user: models.User = Depends(deps.get_current_active_user)
+    current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
 
     feature = crud.feature.get(db=db, id=id)
@@ -53,3 +53,18 @@ def update_feature(
         raise HTTPException(status_code=404, detail="Feature not found")
     feature = crud.feature.update(db=db, db_obj=feature, obj_in=feature_in)
     return feature
+
+
+@router.delete("/{id}")
+def delete_feature(
+    *,
+    db: Session = Depends(deps.get_db),
+    id: int,
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
+
+    feature = crud.feature.get(db=db, id=id)
+    if not feature:
+        raise HTTPException(status_code=404, detail="Feature not found")
+    feature = crud.feature.remove(db=db, id=id)
+    return f"Feature {id} is removed"

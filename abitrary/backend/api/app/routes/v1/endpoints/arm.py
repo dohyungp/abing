@@ -81,7 +81,7 @@ def update_arm(
     db: Session = Depends(deps.get_db),
     id: int,
     arm_in: schemas.ArmUpdate,
-    current_user: models.User = Depends(deps.get_current_active_user)
+    current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
 
     arm = crud.arm.get(db=db, id=id)
@@ -89,3 +89,18 @@ def update_arm(
         raise HTTPException(status_code=404, detail="arm not found")
     arm = crud.arm.update(db=db, db_obj=arm, obj_in=arm_in)
     return arm
+
+
+@router.delete("/{id}")
+def delete_arm(
+    *,
+    db: Session = Depends(deps.get_db),
+    id: int,
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
+
+    arm = crud.arm.get(db=db, id=id)
+    if not arm:
+        raise HTTPException(status_code=404, detail="arm not found")
+    crud.arm.remove(db=db, id=id)
+    return f"Arm {id} is removed!"

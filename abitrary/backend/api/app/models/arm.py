@@ -21,7 +21,7 @@ class Arm(Base):
     traffic_weight = Column(Integer, nullable=False)
     experiment_id = Column(Integer, ForeignKey("experiments.id"), nullable=False)
     experiment = relationship("Experiment", back_populates="arms")
-    features = relationship("Feature", back_populates="arm")
+    features = relationship("Feature", back_populates="arm", cascade="all,delete")
     time_created = Column(DateTime(timezone=True), server_default=func.now())
     time_updated = Column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
