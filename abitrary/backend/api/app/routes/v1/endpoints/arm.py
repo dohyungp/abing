@@ -1,4 +1,4 @@
-from typing import Any, List
+from typing import Any, List, Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -13,9 +13,12 @@ async def get_arms(
     db: Session = Depends(deps.get_db),
     skip: int = 0,
     limit: int = 100,
+    experiment_id: Optional[int] = None,
     current_user: models.User = Depends(deps.get_current_active_user),
 ):
-    arm_list = crud.arm.get_list(db, skip=skip, limit=limit)
+    arm_list = crud.arm.get_list(
+        db, skip=skip, limit=limit, experiment_id=experiment_id
+    )
     return arm_list
 
 
