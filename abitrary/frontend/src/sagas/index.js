@@ -6,9 +6,11 @@ import { watchFetchMe } from "./users/fetch";
 import watchFetchExperiments from "./experiments/list";
 import watchFetchExperiment from "./experiments/retrieve";
 import watchUpdateExperiment from "./experiments/update";
-import watchCreateArms from "./arms/create";
 import watchCreateExperiment from "./experiments/create";
 import watchDeleteExperiment from "./experiments/delete";
+import watchCreateArms from "./arms/create";
+import watchUpdateArm from "./arms/update";
+import watchFetchArms from "./arms/list";
 
 export default function* rootSaga() {
   yield all([
@@ -22,5 +24,7 @@ export default function* rootSaga() {
     fork(watchUpdateExperiment),
     fork(watchDeleteExperiment),
     fork(watchCreateArms),
+    fork(watchFetchArms),
+    fork(watchUpdateArm),
   ]);
 }
