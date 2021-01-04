@@ -49,6 +49,17 @@ export function arms(state = reducerUtils.initial({}), action) {
       });
     case types.UPDATE_ARM_ERROR:
       return reducerUtils.error(action.payload, state.data);
+    case types.DELETE_ARM:
+      return reducerUtils.loading(state.data);
+    case types.DELETE_ARM_SUCCESS:
+      return reducerUtils.success({
+        ...state.data,
+        [action.payload.experiment_id]: state.data[
+          action.payload.experiment_id
+        ].filter((v) => v.id !== action.payload.arm_id),
+      });
+    case types.DELETE_ARM_ERROR:
+      return reducerUtils.error(action.payload, state.data);
     default:
       return state;
   }

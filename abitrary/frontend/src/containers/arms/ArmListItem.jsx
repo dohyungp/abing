@@ -2,13 +2,20 @@ import { List, Card, Button, Form, Typography, InputNumber, Input } from "antd";
 import { EditOutlined, SaveOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import FeatureDetailContainer from "../features/FeatureDetailContainer";
-import { updateArm } from "../../actions/arms";
+import { deleteArm, updateArm } from "../../actions/arms";
 import { useDispatch } from "react-redux";
 import { createFeature } from "../../actions/features";
 
 const ArmListItem = ({ item }) => {
   const [editable, setEditable] = useState();
   const dispatch = useDispatch();
+  const handleOnDelete = () => {
+    dispatch(
+      deleteArm({
+        id: item.id,
+      }),
+    );
+  };
   const handleOnFinish = (data) => {
     const { features, ...arm } = data;
     const hasArmUpdate = Object.entries(arm).some(([k, v]) => {
@@ -73,7 +80,13 @@ const ArmListItem = ({ item }) => {
                 <EditOutlined />
               </Button>
             ),
-            <Button danger key="arm_delete" type="text" size="large">
+            <Button
+              danger
+              key="arm_delete"
+              type="text"
+              size="large"
+              onClick={handleOnDelete}
+            >
               <DeleteOutlined />
             </Button>,
           ]}

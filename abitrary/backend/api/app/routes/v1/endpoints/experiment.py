@@ -108,4 +108,4 @@ def delete_experiment(
     if not experiment:
         raise HTTPException(status_code=404, detail="Experiment not found")
     experiment = crud.experiment.remove(db=db, id=id)
-    return f"Experiment {id} is removed!"
+    return {"message": f"Experiment {id} is removed!", "type": "arm", "id": id}

@@ -103,7 +103,13 @@ def delete_arm(
 ) -> Any:
 
     arm = crud.arm.get(db=db, id=id)
+    experiment_id = arm.experiment_id
     if not arm:
         raise HTTPException(status_code=404, detail="arm not found")
     crud.arm.remove(db=db, id=id)
-    return f"Arm {id} is removed!"
+    return {
+        "message": f"Arm {id} is removed!",
+        "type": "arm",
+        "arm_id": id,
+        "experiment_id": experiment_id,
+    }
