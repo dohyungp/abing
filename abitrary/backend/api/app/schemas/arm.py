@@ -6,7 +6,6 @@ from pydantic import BaseModel
 class ArmBase(BaseModel):
     name: str
     traffic_weight: int
-    experiment_id: int
 
 
 class ArmFeatureCreate(BaseModel):
@@ -16,15 +15,18 @@ class ArmFeatureCreate(BaseModel):
 
 
 class ArmCreate(ArmBase):
+    experiment_id: int
     features: Optional[List[ArmFeatureCreate]]
 
 
 class ArmUpdate(ArmBase):
-    pass
+    name: Optional[str]
+    traffic_weight: Optional[int]
 
 
 class ArmInDBBase(ArmBase):
     id: int
+    experiment_id: int
     time_created: datetime
     time_updated: datetime
 
