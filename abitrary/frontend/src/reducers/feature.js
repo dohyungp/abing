@@ -30,10 +30,7 @@ export function features(state = reducerUtils.initial({}), action) {
           .sort((a, b) => a.id - b.id);
         return null;
       });
-      return reducerUtils.success({
-        ...state.data,
-        ...newStateByGet,
-      });
+      return reducerUtils.success(newStateByGet);
     case types.GET_FEATURES_ERROR:
       return reducerUtils.error(action.payload, state.data);
     case types.UPDATE_FEATURE:
