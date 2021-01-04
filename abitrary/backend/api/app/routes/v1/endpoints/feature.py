@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -13,9 +13,10 @@ async def get_features(
     db: Session = Depends(deps.get_db),
     skip: int = 0,
     limit: int = 100,
+    arm_id: Optional[int] = None,
     current_user: models.User = Depends(deps.get_current_active_user),
 ):
-    return crud.feature.get_list(db, skip=skip, limit=limit)
+    return crud.feature.get_list(db, skip=skip, limit=limit, arm_id=arm_id)
 
 
 @router.get("/{id}")
