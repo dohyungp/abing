@@ -20,12 +20,16 @@ export function arms(state = reducerUtils.initial({}), action) {
     case types.GET_ARMS:
       return reducerUtils.loading(state.data);
     case types.GET_ARMS_SUCCESS:
-      let newDataByGet = {};
+      let newDataByGet = { ...state.data };
       action.payload.map((v) => {
         newDataByGet[v.experiment_id] = [
-          ...(state.data?.[v.experiment_id] || []),
+          ...(newDataByGet?.[v.experiment_id] || []).filter(
+            (v2) => v2.id !== v.id,
+          ),
           v,
-        ];
+        ]
+          .slice()
+          .sort((a, b) => a.id - b.id);
         return null;
       });
       return reducerUtils.success(newDataByGet);
@@ -38,7 +42,10 @@ export function arms(state = reducerUtils.initial({}), action) {
         ...state.data,
         [action.payload.experiment_id]: (
           state.data?.[action.payload.experiment_id] || []
-        ).map((v) => (v.id === action.payload.id ? action.payload : v)),
+        )
+          .map((v) => (v.id === action.payload.id ? action.payload : v))
+          .slice()
+          .sort((a, b) => a.id - b.id),
       });
     case types.UPDATE_ARM_ERROR:
       return reducerUtils.error(action.payload, state.data);
