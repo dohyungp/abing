@@ -4,6 +4,7 @@ import users from "./users";
 import me from "./me";
 import { arms } from "./arm";
 import { experiment, experiments } from "./experiment";
+import { features } from "./feature";
 export default combineReducers({
   auth,
   users,
@@ -11,4 +12,5 @@ export default combineReducers({
   experiment,
   experiments,
   arms,
+  features,
 });
