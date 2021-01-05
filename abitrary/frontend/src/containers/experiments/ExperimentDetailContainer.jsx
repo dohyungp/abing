@@ -8,7 +8,6 @@ import {
   Badge,
   Switch,
 } from "antd";
-import TextArea from "antd/lib/input/TextArea";
 import { Redirect } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -142,7 +141,7 @@ const ExperimentDetailContainer = ({ id }) => {
           <Descriptions.Item label="Description">
             {editable ? (
               <Form.Item name="description" key="experiment_description">
-                <TextArea maxLength={500} showCount />
+                <Input.TextArea maxLength={500} showCount />
               </Form.Item>
             ) : (
               experiment.data?.[id]?.description
