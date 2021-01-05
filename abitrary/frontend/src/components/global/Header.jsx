@@ -5,7 +5,7 @@ import logo from "../../assets/abitrary-logo.png";
 import "./header.css";
 import { useState } from "react";
 
-const Header = ({ menus = [] } = {}) => {
+const Header = ({ menus = [], me } = {}) => {
   const location = useLocation();
   const [drawerVisible, setDrawerVisble] = useState(false);
   return (
@@ -34,6 +34,7 @@ const Header = ({ menus = [] } = {}) => {
           selectedKeys={[location.pathname]}
         >
           {menus.map((menu) => {
+            if (menu.superUserOnly && !me?.is_superuser) return null;
             return (menu?.children || []).length ? (
               <Menu.SubMenu
                 title={menu.name}
@@ -66,6 +67,7 @@ const Header = ({ menus = [] } = {}) => {
             selectedKeys={[location.pathname]}
           >
             {menus.map((menu) => {
+              if (menu.superUserOnly && !me?.is_superuser) return null;
               return (menu?.children || []).length ? (
                 <Menu.SubMenu
                   title={menu.name}
