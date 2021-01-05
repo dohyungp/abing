@@ -9,6 +9,7 @@ import {
   Switch,
 } from "antd";
 import TextArea from "antd/lib/input/TextArea";
+import { Redirect } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -44,6 +45,7 @@ const ExperimentDetailContainer = ({ id }) => {
     dispatch(getExperiment({ id }));
   }, [dispatch, id]);
   if (experiment.loading) return <div>loading...</div>;
+  else if (experiment.error) return <Redirect to={"/404"} />;
   return (
     <>
       <Form
