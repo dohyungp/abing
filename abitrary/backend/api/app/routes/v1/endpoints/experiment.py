@@ -86,7 +86,7 @@ def update_experiment(
     db: Session = Depends(deps.get_db),
     id: int,
     experiment_in: schemas.ExperimentUpdate,
-    current_user: models.User = Depends(deps.get_current_active_user)
+    current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
 
     experiment = crud.experiment.get(db=db, id=id)
@@ -94,3 +94,18 @@ def update_experiment(
         raise HTTPException(status_code=404, detail="Experiment not found")
     experiment = crud.experiment.update(db=db, db_obj=experiment, obj_in=experiment_in)
     return experiment
+
+
+@router.delete("/{id}")
+def delete_experiment(
+    *,
+    db: Session = Depends(deps.get_db),
+    id: int,
+    current_user: models.User = Depends(deps.get_current_active_user),
+) -> Any:
+
+    experiment = crud.experiment.get(db=db, id=id)
+    if not experiment:
+        raise HTTPException(status_code=404, detail="Experiment not found")
+    experiment = crud.experiment.remove(db=db, id=id)
+    return {"message": f"Experiment {id} is removed!", "type": "arm", "id": id}

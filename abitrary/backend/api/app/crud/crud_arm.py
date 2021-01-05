@@ -9,4 +9,14 @@ from app.db.base import Arm
 from app.schemas.arm import ArmCreate, ArmUpdate
 
 
-arm = CRUDBase[Arm, ArmCreate, ArmUpdate](Arm)
+class CRUDArm(CRUDBase[Arm, ArmCreate, ArmUpdate]):
+    def get_list(
+        self, db: Session, *, skip: int = 0, limit: int = 100, experiment_id: int = None
+    ) -> List[Arm]:
+        query = db.query(self.model)
+        if experiment_id:
+            query = query.filter(self.model.experiment_id == experiment_id)
+        return query.offset(skip).limit(limit).all()
+
+
+arm = CRUDArm(Arm)

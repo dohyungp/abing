@@ -1,6 +1,6 @@
-frontend/node_modules
-frontend/npm-debug.log
 Dockerfile*
+abitrary/frontend/node_modules
+npm-debug.log
 docker-compose*
 .dockerignore
 .git
