@@ -9,6 +9,7 @@ import { createFeature } from "../../actions/features";
 const ArmListItem = ({ item }) => {
   const [editable, setEditable] = useState();
   const dispatch = useDispatch();
+
   const handleOnDelete = () => {
     dispatch(
       deleteArm({
@@ -16,6 +17,7 @@ const ArmListItem = ({ item }) => {
       }),
     );
   };
+
   const handleOnFinish = (data) => {
     const { features, ...arm } = data;
     const hasArmUpdate = Object.entries(arm).some(([k, v]) => {
@@ -45,6 +47,7 @@ const ArmListItem = ({ item }) => {
   });
   return (
     <Form
+      key="arm_update_form"
       initialValues={{ traffic_weight: item.traffic_weight, name: item.name }}
       onFinish={handleOnFinish}
     >
