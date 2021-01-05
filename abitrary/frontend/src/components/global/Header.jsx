@@ -34,7 +34,7 @@ const Header = ({ menus = [], me } = {}) => {
           selectedKeys={[location.pathname]}
         >
           {menus.map((menu) => {
-            if (menu.superUserOnly && !me?.is_superuser) return null;
+            if (menu.superUserOnly && !me.data?.is_superuser) return null;
             return (menu?.children || []).length ? (
               <Menu.SubMenu
                 title={menu.name}
@@ -67,7 +67,7 @@ const Header = ({ menus = [], me } = {}) => {
             selectedKeys={[location.pathname]}
           >
             {menus.map((menu) => {
-              if (menu.superUserOnly && !me?.is_superuser) return null;
+              if (menu.superUserOnly && !me.data?.is_superuser) return null;
               return (menu?.children || []).length ? (
                 <Menu.SubMenu
                   title={menu.name}
