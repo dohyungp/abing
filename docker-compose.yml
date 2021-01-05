@@ -43,7 +43,7 @@ services:
       - 8000:8000
     volumes:
       - ./abitrary/backend/api:/app
-    command: /bin/bash -c "uvicorn app.main:app --reload --host "0.0.0.0""
+    command: /bin/bash -c "pip install -e . && abitrary initdb && uvicorn app.main:app --reload --host "0.0.0.0""
     networks:
       - overlay
 
