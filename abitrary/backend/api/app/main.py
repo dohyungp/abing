@@ -1,5 +1,5 @@
-from typing import Generator, Any
-from fastapi import FastAPI
+from typing import Generator, Any, Optional
+from fastapi import FastAPI, Request
 from fastapi import Depends, HTTPException
 from fastapi.staticfiles import StaticFiles
 
@@ -9,11 +9,20 @@ from sqlalchemy.orm import Session
 
 from app.routes.v1.api import api_router
 from app.core.config import settings
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
 app.include_router(api_router, prefix=settings.API_VERSION)
-app.mount("/", StaticFiles(directory="app/static", html=True), name="static")
+
+app.mount("/static", StaticFiles(directory="app/static/static"), name="static")
+templates = Jinja2Templates(directory="app/static")
+
+
+@app.route("/{paths:path}")
+async def serve(request: Request, paths: Optional[str] = None):
+    return templates.TemplateResponse("index.html", {"request": request})
+
 
 # NOTE: Allow CORS
 app.add_middleware(
