@@ -10,3 +10,4 @@ xxhash
 python-multipart
 aiofiles
 jinja2
+click
