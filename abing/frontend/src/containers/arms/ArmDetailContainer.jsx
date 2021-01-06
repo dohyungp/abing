@@ -7,6 +7,7 @@ import { getArms } from "../../actions/arms";
 import ArmListItem from "./ArmListItem";
 
 const ArmDetailContainer = ({ id }) => {
+  const [form] = Form.useForm();
   const arms = useSelector((state) => state.arms);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,6 +27,8 @@ const ArmDetailContainer = ({ id }) => {
         })),
       }),
     );
+
+    form.resetFields();
   };
 
   if (arms.loading) return <div>loading...</div>;
@@ -41,7 +44,11 @@ const ArmDetailContainer = ({ id }) => {
         dataSource={arms.data?.[id] || []}
         renderItem={(item) => <ArmListItem item={item} />}
       />
-      <Form key="arm_creation_form" onFinish={handleOnFinishCreation}>
+      <Form
+        key="arm_creation_form"
+        onFinish={handleOnFinishCreation}
+        form={form}
+      >
         <Form.List name="arms">
           {(armFields, { add, remove }) => (
             <>

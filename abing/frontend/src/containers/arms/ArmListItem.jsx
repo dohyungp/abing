@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { createFeatures } from "../../actions/features";
 
 const ArmListItem = ({ item }) => {
+  const [form] = Form.useForm();
   const [editable, setEditable] = useState();
   const dispatch = useDispatch();
 
@@ -38,12 +39,14 @@ const ArmListItem = ({ item }) => {
         }),
       );
     setEditable(false);
+    form.resetFields();
   };
   useEffect(() => {
     return () => {};
   });
   return (
     <Form
+      form={form}
       key="arm_update_form"
       initialValues={{ traffic_weight: item.traffic_weight, name: item.name }}
       onFinish={handleOnFinish}
