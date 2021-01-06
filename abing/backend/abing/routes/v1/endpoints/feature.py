@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any, Optional, List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -38,6 +38,25 @@ async def create_feature(
     if not arm:
         raise HTTPException(status_code=404, detail="Arm not found")
     return crud.feature.create(db=db, obj_in=feature_in)
+
+
+@router.post("/bulk", response_model=List[schemas.Feature])
+async def create_features(
+    features_in: List[schemas.FeatureCreate],
+    db: Session = Depends(deps.get_db),
+    current_user: models.User = Depends(deps.get_current_active_user),
+):
+
+    created_features = list()
+    for feature_in in features_in:
+        arm = crud.arm.get(db=db, id=feature_in.arm_id)
+
+        if not arm:
+            raise HTTPException(status_code=404, detail="arm not found")
+
+        feature = crud.feature.create(db=db, obj_in=feature_in)
+        created_features.append(feature)
+    return created_features
 
 
 @router.put("/{id}")

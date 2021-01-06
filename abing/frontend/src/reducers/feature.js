@@ -17,6 +17,19 @@ export function features(state = reducerUtils.initial({}), action) {
       });
     case types.CREATE_FEATURE_ERROR:
       return reducerUtils.error(action.payload, state.data);
+    case types.CREATE_FEATURES:
+      return reducerUtils.loading(state.data);
+    case types.CREATE_FEATURES_SUCCESS:
+      let newDataByCreate = { ...state.data };
+      action.payload.map((v) => {
+        newDataByCreate[v.arm_id] = [...(newDataByCreate?.[v.arm_id] || []), v]
+          .slice()
+          .sort((a, b) => a.id - b.id);
+        return null;
+      });
+      return reducerUtils.success(newDataByCreate);
+    case types.CREATE_FEATURES_ERROR:
+      return reducerUtils.error(action.payload, state.data);
     case types.GET_FEATURES:
       return reducerUtils.loading(state.data);
     case types.GET_FEATURES_SUCCESS:

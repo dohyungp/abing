@@ -1,6 +1,9 @@
 export const CREATE_FEATURE = "CREATE_FEATURE";
 export const CREATE_FEATURE_SUCCESS = "CREATE_FEATURE_SUCCESS";
 export const CREATE_FEATURE_ERROR = "CREATE_FEATURE_ERROR";
+export const CREATE_FEATURES = "CREATE_FEATURES";
+export const CREATE_FEATURES_SUCCESS = "CREATE_FEATURES_SUCCESS";
+export const CREATE_FEATURES_ERROR = "CREATE_FEATURES_ERROR";
 export const GET_FEATURES = "GET_FEATURES";
 export const GET_FEATURES_SUCCESS = "GET_FEATURES_SUCCESS";
 export const GET_FEATURES_ERROR = "GET_FEATURES_ERROR";
@@ -13,6 +16,10 @@ export const DELETE_FEATURE_ERROR = "DELETE_FEATURE_ERROR";
 
 export function createFeature(data) {
   return { type: CREATE_FEATURE, payload: data };
+}
+
+export function createFeatures(data) {
+  return { type: CREATE_FEATURES, payload: data };
 }
 
 export function getFeatures(data) {

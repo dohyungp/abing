@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import FeatureDetailContainer from "../features/FeatureDetailContainer";
 import { deleteArm, updateArm } from "../../actions/arms";
 import { useDispatch } from "react-redux";
-import { createFeature } from "../../actions/features";
+import { createFeatures } from "../../actions/features";
 
 const ArmListItem = ({ item }) => {
   const [editable, setEditable] = useState();
@@ -32,14 +32,11 @@ const ArmListItem = ({ item }) => {
       );
 
     (features || []).length > 0 &&
-      features.map((feature) => {
-        dispatch(
-          createFeature({
-            data: { ...feature, arm_id: item.id },
-          }),
-        );
-        return null;
-      });
+      dispatch(
+        createFeatures({
+          data: features.map((feature) => ({ ...feature, arm_id: item.id })),
+        }),
+      );
     setEditable(false);
   };
   useEffect(() => {

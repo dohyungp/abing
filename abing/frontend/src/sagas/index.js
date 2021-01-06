@@ -11,7 +11,7 @@ import watchDeleteExperiment from "./experiments/delete";
 import watchCreateArms from "./arms/create";
 import watchUpdateArm from "./arms/update";
 import watchFetchArms from "./arms/list";
-import watchCreateFeature from "./features/create";
+import { watchCreateFeature, watchCreateFeatures } from "./features/create";
 import watchFetchFeatures from "./features/list";
 import watchUpdateFeature from "./features/update";
 import watchDeleteFeature from "./features/delete";
@@ -34,6 +34,7 @@ export default function* rootSaga() {
     fork(watchUpdateArm),
     fork(watchDeleteArm),
     fork(watchCreateFeature),
+    fork(watchCreateFeatures),
     fork(watchFetchFeatures),
     fork(watchUpdateFeature),
     fork(watchHistory),

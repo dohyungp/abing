@@ -7,6 +7,13 @@ export const createFeature = async ({ access_token, data }) => {
   return response.data;
 };
 
+export const createFeatures = async ({ access_token, data }) => {
+  const response = await axios.post("/api/v1/features/bulk", data, {
+    headers: { Authorization: `Bearer ${access_token}` },
+  });
+  return response.data;
+};
+
 export const getFeatures = async ({
   access_token,
   skip = 0,
