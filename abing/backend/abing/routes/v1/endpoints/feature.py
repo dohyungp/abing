@@ -65,7 +65,8 @@ def delete_feature(
 ) -> Any:
 
     feature = crud.feature.get(db=db, id=id)
+    arm_id = feature.arm_id
     if not feature:
         raise HTTPException(status_code=404, detail="Feature not found")
     feature = crud.feature.remove(db=db, id=id)
-    return f"Feature {id} is removed"
+    return {"feature_id": id, "arm_id": arm_id, "message": f"Feature {id} is removed"}

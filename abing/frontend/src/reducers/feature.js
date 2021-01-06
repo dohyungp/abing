@@ -44,6 +44,17 @@ export function features(state = reducerUtils.initial({}), action) {
       });
     case types.UPDATE_FEATURE_ERROR:
       return reducerUtils.error(action.payload, state.data);
+    case types.DELETE_FEATURE:
+      return reducerUtils.loading(state.data);
+    case types.DELETE_FEATURE_SUCCESS:
+      return reducerUtils.success({
+        ...state.data,
+        [action.payload.arm_id]: (
+          state.data?.[action.payload.arm_id] || []
+        ).filter((v) => v.id !== action.payload.feature_id),
+      });
+    case types.DELETE_FEATURE_ERROR:
+      return reducerUtils.error(action.payload, state.data);
     default:
       return state;
   }

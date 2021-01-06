@@ -14,6 +14,7 @@ import watchFetchArms from "./arms/list";
 import watchCreateFeature from "./features/create";
 import watchFetchFeatures from "./features/list";
 import watchUpdateFeature from "./features/update";
+import watchDeleteFeature from "./features/delete";
 import watchDeleteArm from "./arms/delete";
 import watchHistory from "./history";
 
@@ -36,5 +37,6 @@ export default function* rootSaga() {
     fork(watchFetchFeatures),
     fork(watchUpdateFeature),
     fork(watchHistory),
+    fork(watchDeleteFeature),
   ]);
 }

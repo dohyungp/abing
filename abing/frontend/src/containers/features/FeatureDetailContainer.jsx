@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { List, Card, Button, Form, Input } from "antd";
 import { DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { CloseOutlined } from "@ant-design/icons";
-import { getFeatures } from "../../actions/features";
+import { deleteFeature, getFeatures } from "../../actions/features";
 
 const FeatureDetailContainer = ({ armId, editable }) => {
   const features = useSelector((state) => state.features);
@@ -15,6 +15,15 @@ const FeatureDetailContainer = ({ armId, editable }) => {
       }),
     );
   }, [dispatch, armId]);
+
+  const handleDeleteFeature = (item) => {
+    dispatch(
+      deleteFeature({
+        id: item.id,
+      }),
+    );
+  };
+
   if (features.loading) return <div>loading...</div>;
   return (
     <>
@@ -30,7 +39,13 @@ const FeatureDetailContainer = ({ armId, editable }) => {
               type="inner"
               extra={[
                 editable ? (
-                  <Button type="text" key="feature_delete">
+                  <Button
+                    type="text"
+                    key="feature_delete"
+                    onClick={() => {
+                      handleDeleteFeature(item);
+                    }}
+                  >
                     <CloseOutlined />
                   </Button>
                 ) : (
