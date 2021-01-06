@@ -37,7 +37,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "abitrary=app.cli:abitrary",
+            "abitrary=abitrary.cli:abitrary",
         ],
     },
     python_requires=">=3.6",
