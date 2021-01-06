@@ -8,8 +8,6 @@ from abing.crud.base import CRUDBase
 from abing.db.base import Experiment
 from abing.schemas.experiment import ExperimentCreate, ExperimentUpdate
 
-from abing.services.route_service import HashRouter
-
 
 class CRUDExperiment(CRUDBase[Experiment, ExperimentCreate, ExperimentUpdate]):
     def get_list(
