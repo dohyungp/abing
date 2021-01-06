@@ -25,7 +25,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./abitrary/frontend:/app
+      - ./abing/frontend:/app
     environment:
       - NODE_ENV=development
     command: /bin/bash -c "npm start"
@@ -42,8 +42,8 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ./abitrary/backend:/app
-    command: /bin/bash -c "pip install -e . && abitrary initdb && uvicorn abitrary:app --reload --host "0.0.0.0""
+      - ./abing/backend:/app
+    command: /bin/bash -c "pip install -e . && abing initdb && uvicorn abing:app --reload --host "0.0.0.0""
     networks:
       - overlay
 

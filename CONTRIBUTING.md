@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="abitrary-logo.png">
+    <img src="abing-logo.png">
 </p>
 
 ---

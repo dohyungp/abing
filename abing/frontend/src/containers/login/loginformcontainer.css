@@ -1,0 +1,16 @@
+.login-form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-logo {
+  min-width: 300px;
+}
+
+@media screen and (min-width: 480px) {
+  .login-logo {
+    min-width: 460px;
+  }
+}

@@ -1,6 +1,6 @@
 FROM node:latest
 
-COPY ./abitrary/frontend /app
+COPY ./abing/frontend /app
 
 WORKDIR /app
 

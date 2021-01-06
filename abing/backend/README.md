@@ -42,7 +42,7 @@ ABING는 AB테스트를 위한 라우팅 툴입니다. 일반적인 비즈니스
 
 ### 추가 기능
 
-1. MAB 기능 지원: Thomson sampling, Epsilon Greedy, UCB 세가지 유형을 지원.
+1. MAB 기능 지원: Thomson sampling, Eplisilon Greedy, UCB 세가지 유형을 지원.
 2. SDK: 각 언어에 맞는 sdk를 지원하여, 다양한 플랫폼에서 활용할 수 있도록 함.
 3. 실험 통계 기능: 각 실험화면에서 Sample size calculator, Significant calculator 및 Power analysis 등을 지원
 4. Tag 기능: Arm 태그 기능을 통해 특정 태그값을 가지고 있는 경우 특정 Arm으로 포함되도록 지원(e.g Control tag가 iOS이고 client에서 보내주는 User meta에 iOS가 포함되면 해당 Arm에 포함)
