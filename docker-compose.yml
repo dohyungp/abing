@@ -42,7 +42,7 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ./abitrary/backend/api:/app
+      - ./abitrary/backend:/app
     command: /bin/bash -c "pip install -e . && abitrary initdb && uvicorn abitrary:app --reload --host "0.0.0.0""
     networks:
       - overlay
