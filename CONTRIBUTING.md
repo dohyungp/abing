@@ -15,11 +15,11 @@ FastAPI + uvicorn + PostgreSQL + React + Redux + Redux Saga + Ant.design
 ## Development
 
 ### 환경변수
-- POSTGRES_DB
-- POSTGRES_USER
-- POSTGRES_PASSWORD
-- POSTGRES_HOST
-- POSTGRES_PORT
+- ABING_DB
+- ABING_DB_USER
+- ABING_DB_PASSWORD
+- ABING_DB_HOST
+- ABING_DB_PORT
 
 ### 환경 실행
 ```sh

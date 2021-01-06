@@ -14,11 +14,11 @@ class Settings(BaseSettings):
     TOKEN_SCHEME: str = "bearer"
     USERS_OPEN_REGISTRATION: bool = False
 
-    POSTGRES_HOST: str
-    POSTGRES_USER: str
-    POSTGRES_PASSWORD: str
-    POSTGRES_DB: str
-    POSTGRES_PORT: str = "5432"
+    ABING_DB_HOST: str
+    ABING_DB_USER: str
+    ABING_DB_PASSWORD: str
+    ABING_DB: str
+    ABING_DB_PORT: str = "5432"
     SQLALCHEMY_DATABASE_URI: Optional[PostgresDsn] = None
 
     @validator("SQLALCHEMY_DATABASE_URI", pre=True)
@@ -29,11 +29,11 @@ class Settings(BaseSettings):
             return v
         return PostgresDsn.build(
             scheme="postgresql",
-            user=values.get("POSTGRES_USER"),
-            password=values.get("POSTGRES_PASSWORD"),
-            host=values.get("POSTGRES_HOST"),
-            port=values.get("POSTGRES_PORT"),
-            path=f"/{values.get('POSTGRES_DB', '')}",
+            user=values.get("ABING_DB_USER"),
+            password=values.get("ABING_DB_PASSWORD"),
+            host=values.get("ABING_DB_HOST"),
+            port=values.get("ABING_DB_PORT"),
+            path=f"/{values.get('ABING_DB', '')}",
         )
 
     class Config:

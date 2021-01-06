@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  package:
+    build:
+      context: .
+      dockerfile: ./docker/DockerFile.build
+    volumes:
+      - ./dist:/app/dist
+    command:
+      - /bin/bash
+      - -c
+      - "python setup.py sdist bdist_wheel"

@@ -31,11 +31,11 @@ services:
     command: /bin/bash -c "npm start"
   backend:
     environment:
-      - POSTGRES_DB=${DB_NAME}
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_HOST=${DB_HOST}
-      - POSTGRES_PORT=${DB_PORT}
+      - ABING_DB=${DB_NAME}
+      - ABING_DB_USER=${DB_USER}
+      - ABING_DB_PASSWORD=${DB_PASSWORD}
+      - ABING_DB_HOST=${DB_HOST}
+      - ABING_DB_PORT=${DB_PORT}
     build:
       context: .
       dockerfile: ./docker/DockerFile.backend

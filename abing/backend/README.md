@@ -8,8 +8,62 @@ ABING는 AB테스트를 위한 라우팅 툴입니다. 일반적인 비즈니스
 
 ### Installation
 
-🚧 TBU
+아래와 같이 pip로 빠르게 설치할 수 있습니다.
+```shell
+pip install abing
+```
 
+### 서버 실행
+
+#### DB 초기화
+
+DB 연결을 위해 ABING은 다음 다섯개의 환경변수를 필요로 합니다.
+
+- ABING_DB
+- ABING_DB_USER
+- ABING_DB_PASSWORD
+- ABING_DB_HOST
+- ABING_DB_PORT
+
+따라서 아래와 같이 환경변수를 export해주세요
+
+```shell
+export ABING_DB="abing"
+export ABING_DB_USER="abing"
+export ABING_DB_PASSWORD="$uperScretPassW0rd"
+export ABING_DB_HOST="abing-db.com"
+export ABING_DB_PORT=5432
+```
+
+이후 migration을 위해 아래와 같이 명령어를 입력해주시면 됩니다(abing은 migration툴로 alembic을 사용하고 있으므로 정상적으로 마이그레이션이 되었다면, alembic migration 로그가 출력될 거에요)
+
+```shell
+abing initdb
+```
+
+#### 서버 실행
+
+abing은 uvicorn을 사용하여 서버를 실행합니다. 따라서 아래와 같이 커맨드를 날리면 바로 서버가 구동됩니다
+
+```shell
+uvicorn abing:app --reload --host "0.0.0.0"
+```
+
+gunicorn과 같이 실행하고 싶으시다면 아래와 같이 uvicorn worker class와 같이 사용하시는걸 추천드립니다.
+
+```shell
+gunicorn abing:app -w 4 -k uvicorn.workers.UvicornWorker
+```
+
+#### 최초 관리자 계정 생성
+
+다른 유저 계정을 만들어주려면 최초 관리자 계정이 필요합니다. 따라서 아래와 같이 `createsuperuser` 명령어로 최초의 슈퍼계정을 만들어주세요.
+
+```shell
+abing createsueruser
+```
+
+여기까지 정상적으로 실행이 되셨다면, 배포하는 url의 루트(`/`)에서 슈퍼계정으로 로그인을 해보세요. 로그인이 정상적으로 되었다면 성공적으로 abing을 시작하셨습니다!
 ### 실험 생성하기
 
 1. Experiments - List에서 Add a new experiment를 클릭하시거나, Experiments - Create를 눌러 실험 생성 메뉴로 갈 수 있습니다.

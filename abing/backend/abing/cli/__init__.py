@@ -1,3 +1,4 @@
+import os
 import click
 import alembic.config as alembic_config
 from abing.db.session import SessionLocal
@@ -11,7 +12,10 @@ def abing():
 
 @abing.command("initdb", short_help="initialze database.")
 def initdb_command():
-    alembic_config.main(argv=["--raiseerr", "upgrade", "head"])
+    config_file = os.path.join(
+        os.path.abspath(os.path.dirname(__file__)), "alembic.ini"
+    )
+    alembic_config.main(argv=["--raiseerr", "-c", config_file, "upgrade", "head"])
 
 
 @abing.command("createsuperuser", short_help="Create superuser")
