@@ -1,6 +1,6 @@
 # Welcome to ABING!
 
-## What is ABIRARY?
+## What is ABING?
 
 ABING는 AB테스트를 위한 라우팅 툴입니다. 일반적인 비즈니스 모델에서 사용할 수 있도록 ABING는 별도의 연동과정 없이 AB테스팅을 운영할 수 있도록 개발되었습니다. UI에서 실험 생성 및 설정 후 route API([/api/v1/experiments/route](localhost:8000/api/v1/experiments/route))에서 각 user id별(필요 시 uuid)로 할당만 받으면 자유롭게 AB테스팅을 할 수 있습니다.
 
