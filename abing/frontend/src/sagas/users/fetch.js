@@ -1,7 +1,7 @@
 import { all, call, put, select, takeLatest } from "redux-saga/effects";
 import * as userAPI from "../../api/user";
 import { GET_ME, GET_ME_SUCCESS, GET_ME_ERROR } from "../../actions/users/me";
-import { LOGIN_REQUEST } from "../../actions/users/auth";
+import { LOGOUT_REQUEST } from "../../actions/users/auth";
 
 const token = (state) => {
   return state.auth?.data?.access_token;
@@ -18,7 +18,7 @@ function* fetchMeSaga(action) {
   } catch (e) {
     yield all([
       put({ type: GET_ME_ERROR, error: true, payload: e.message }),
-      put({ type: LOGIN_REQUEST }),
+      put({ type: LOGOUT_REQUEST }),
     ]);
   }
 }
