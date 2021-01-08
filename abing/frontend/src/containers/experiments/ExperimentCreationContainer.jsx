@@ -9,8 +9,8 @@ const ExperimentCreationContainer = () => {
     const { scheduleRange: schedules, ...other } = data;
     const payload = {
       ...other,
-      start_date: schedules[0],
-      end_date: schedules[1],
+      start_date: schedules[0].format("YYYY-MM-DD"),
+      end_date: schedules[1].format("YYYY-MM-DD"),
     };
     dispatch(createExperiment(payload));
   };

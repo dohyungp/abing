@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING
 
-from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, Date
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
@@ -18,8 +18,8 @@ class Experiment(Base):
     name = Column(String(200), index=True)
     is_running = Column(Boolean(), default=False)
     description = Column(String)
-    start_date = Column(DateTime)
-    end_date = Column(DateTime)
+    start_date = Column(Date)
+    end_date = Column(Date)
     # NOTE: Arm 순서는 Immutable해야 함.
     arms = relationship(
         "Arm", order_by="Arm.id", back_populates="experiment", cascade="all,delete"
