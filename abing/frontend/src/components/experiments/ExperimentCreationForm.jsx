@@ -48,7 +48,7 @@ const ExperimentCreationForm = ({ onSubmit }) => {
               >
                 <Input />
               </Form.Item>
-              <Form.Item label="Schedule">
+              <Form.Item label="Schedule" name="scheduleRange">
                 <RangePicker />
               </Form.Item>
               <Form.Item label="Description" name="description">

@@ -6,7 +6,13 @@ import ExperimentCreationForm from "../../components/experiments/ExperimentCreat
 const ExperimentCreationContainer = () => {
   const dispatch = useDispatch();
   const handleOnSubmit = (data) => {
-    dispatch(createExperiment(data));
+    const { scheduleRange: schedules, ...other } = data;
+    const payload = {
+      ...other,
+      start_date: schedules[0],
+      end_date: schedules[1],
+    };
+    dispatch(createExperiment(payload));
   };
   return (
     <>
