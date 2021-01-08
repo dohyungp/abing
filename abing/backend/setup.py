@@ -38,6 +38,7 @@ setup(
         "jinja2",
         "click",
     ],
+    extras_require={"sentry": ["sentry-sdk"]},
     entry_points={
         "console_scripts": [
             "abing=abing.cli:abing",

@@ -21,6 +21,8 @@ class Settings(BaseSettings):
     ABING_DB_PORT: str = "5432"
     SQLALCHEMY_DATABASE_URI: Optional[PostgresDsn] = None
 
+    SENTRY_DSN: Optional[str]
+
     @validator("SQLALCHEMY_DATABASE_URI", pre=True)
     def assemble_db_connection(
         cls, v: Optional[str], values: Dict[str, Any]  # noqa
