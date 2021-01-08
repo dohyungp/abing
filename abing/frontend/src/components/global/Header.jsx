@@ -1,6 +1,6 @@
 import { Button, Col, Drawer, Menu, Row } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/abing-logo.svg";
 import "./header.css";
 import { useState } from "react";
@@ -57,7 +57,9 @@ const Header = ({ menus = [], me } = {}) => {
       </Drawer>
       <Row>
         <Col xs={24} sm={24} md={6} lg={6} xl={8}>
-          <img src={logo} alt="ABING" className="logo" />
+          <Link to="/">
+            <img src={logo} alt="ABING" className="logo" />
+          </Link>
         </Col>
         <Col xs={0} sm={0} md={18} lg={18} xl={16}>
           <Menu
