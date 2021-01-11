@@ -5,3 +5,4 @@ from abing.models.user import User  # noqa
 from abing.models.experiment import Experiment  # noqa
 from abing.models.arm import Arm  # noqa
 from abing.models.feature import Feature  # noqa
+from abing.models.allocation import Allocation  # noqa

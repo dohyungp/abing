@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from abing.routes.v1.endpoints import experiment, arm, feature, user, login
+from abing.routes.v1.endpoints import experiment, arm, feature, user, login, allocation
 
 api_router = APIRouter()
 
@@ -12,3 +12,6 @@ api_router.include_router(
 )
 api_router.include_router(arm.router, prefix="/arms", tags=["Arms"])
 api_router.include_router(feature.router, prefix="/features", tags=["Features"])
+api_router.include_router(
+    allocation.router, prefix="/allocations", tags=["Allocations"]
+)

@@ -66,8 +66,11 @@ async def select_arm_by_experiment(
             detail="Experiment arms are not set. Must required arm list at least 2.",
         )
 
-    traffic_router = HashRouter(user_id)
-    arm = traffic_router.route(experiment)
+    arm = crud.arm.get_from_experiment(db=db, user_id=user_id, experiment=experiment)
+    if not arm:
+        traffic_router = HashRouter(user_id)
+        arm = traffic_router.route(experiment)
+        crud.allocation.create(db=db, obj_in={"user_id": user_id, "arm_id": arm.id})
     return arm
 
 
