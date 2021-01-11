@@ -37,7 +37,13 @@ async def select_arms_by_experiments(
         if len(experiment.arms) < 2:
             continue
 
-        arm = traffic_router.route(experiment)
+        arm = crud.arm.get_from_experiment(
+            db=db, user_id=user_id, experiment=experiment
+        )
+        if not arm:
+            arm = traffic_router.route(experiment)
+            crud.allocation.create(db=db, obj_in={"user_id": user_id, "arm_id": arm.id})
+
         selected_arms.append(arm)
 
     return selected_arms
