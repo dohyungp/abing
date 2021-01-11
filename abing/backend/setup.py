@@ -8,7 +8,7 @@ home = os.path.abspath(os.path.dirname(__name__))
 
 setup(
     name="abing",
-    version="0.1.1",
+    version="0.1.2",
     packages=find_packages(home),
     include_package_data=True,
     author="Dohyung Park",
