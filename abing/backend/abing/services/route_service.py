@@ -8,6 +8,8 @@ import xxhash
 from abing.models.experiment import Experiment
 from abing.models.arm import Arm
 
+from abing.core.exceptions import InvalidWeightException
+
 
 class HashType(str, Enum):
     sha1 = "sha1"
@@ -57,6 +59,9 @@ class HashRouter:
         for arm in arms:
             weight_table[arm] = arm.traffic_weight
             total_weight += weight_table[arm]
+
+        if total_weight <= 0:
+            raise InvalidWeightException("Experiment weight should bigger than 0")
 
         current_weight = 0
         for arm in arms:

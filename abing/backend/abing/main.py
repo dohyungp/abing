@@ -11,6 +11,7 @@ from sqlalchemy.orm import Session
 
 from abing.routes.v1.api import api_router
 from abing.core.config import settings
+from abing.core.exceptions import SentryNotFoundException
 
 try:
     import sentry_sdk
@@ -18,7 +19,7 @@ try:
 except (ModuleNotFoundError, ImportError):
     if settings.SENTRY_DSN is not None:
         # NOTE: future should change custom exception.
-        raise Exception(
+        raise SentryNotFoundException(
             "For using sentry, please install sentry sdk(simply you could install via pip install abing[sentry])."
         )
 
