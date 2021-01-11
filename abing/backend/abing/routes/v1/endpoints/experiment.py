@@ -6,6 +6,7 @@ from abing import crud, models, schemas
 from abing.routes import deps
 
 from abing.services.route_service import HashRouter
+from abing.core.exceptions import InvalidWeightException
 
 router = APIRouter()
 
@@ -41,8 +42,13 @@ async def select_arms_by_experiments(
             db=db, user_id=user_id, experiment=experiment
         )
         if not arm:
-            arm = traffic_router.route(experiment)
-            crud.allocation.create(db=db, obj_in={"user_id": user_id, "arm_id": arm.id})
+            try:
+                arm = traffic_router.route(experiment)
+                crud.allocation.create(
+                    db=db, obj_in={"user_id": user_id, "arm_id": arm.id}
+                )
+            except InvalidWeightException:
+                continue
 
         selected_arms.append(arm)
 
