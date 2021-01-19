@@ -1,5 +1,4 @@
-"""Sampling Service
-"""
+"""Sampling Service"""
 from enum import Enum
 from typing import List
 import hashlib
@@ -12,6 +11,8 @@ from abing.core.exceptions import InvalidWeightException
 
 
 class HashType(str, Enum):
+    """HashType Enum Class"""
+
     sha1 = "sha1"
     sha512 = "sha512"
     md5 = "md5"
@@ -36,7 +37,7 @@ class HashRouter:
 
     def _digest_hash(self, data: str) -> str:
         """Hash digest"""
-        h = self.hash()
+        h = self.hash()  # pylint: disable=invalid-name
         h.update(data.encode())
         hashed_data = h.hexdigest()
         return hashed_data
