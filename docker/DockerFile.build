@@ -1,0 +1,11 @@
+FROM node:latest
+
+COPY ./abing/frontend /app
+WORKDIR /app
+RUN npm i && npm run build
+
+FROM python:latest
+
+COPY ./abing/backend /app
+COPY --from=0 /app/build /app/abing/static
+WORKDIR /app

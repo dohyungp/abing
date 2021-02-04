@@ -1,5 +1,5 @@
 Dockerfile*
-abitrary/frontend/node_modules
+abing/frontend/node_modules
 npm-debug.log
 docker-compose*
 .dockerignore

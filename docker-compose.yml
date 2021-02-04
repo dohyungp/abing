@@ -25,25 +25,25 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./abitrary/frontend:/app
+      - ./abing/frontend:/app
     environment:
       - NODE_ENV=development
     command: /bin/bash -c "npm start"
   backend:
     environment:
-      - POSTGRES_DB=${DB_NAME}
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_HOST=${DB_HOST}
-      - POSTGRES_PORT=${DB_PORT}
+      - ABING_DB=${DB_NAME}
+      - ABING_DB_USER=${DB_USER}
+      - ABING_DB_PASSWORD=${DB_PASSWORD}
+      - ABING_DB_HOST=${DB_HOST}
+      - ABING_DB_PORT=${DB_PORT}
     build:
       context: .
       dockerfile: ./docker/DockerFile.backend
     ports:
       - 8000:8000
     volumes:
-      - ./abitrary/backend/api:/app
-    command: /bin/bash -c "uvicorn app.main:app --reload --host "0.0.0.0""
+      - ./abing/backend:/app
+    command: /bin/bash -c "pip install -e . && abing initdb && uvicorn abing:app --reload --host "0.0.0.0""
     networks:
       - overlay
 

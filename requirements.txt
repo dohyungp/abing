@@ -9,3 +9,5 @@ psycopg2-binary
 xxhash
 python-multipart
 aiofiles
+jinja2
+click

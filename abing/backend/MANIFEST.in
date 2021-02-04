@@ -1,0 +1,6 @@
+include MANIFEST.in
+include abing/cli/alembic.ini
+recursive-include abing/static *
+recursive-include abing/alembic *
+global-exclude __pycache__
+global-exclude *.py[co]
