@@ -4,5 +4,6 @@ from .experiment import Experiment, ExperimentCreate, ExperimentUpdate
 from .arm import Arm, ArmCreate, ArmUpdate
 from .feature import Feature, FeatureCreate, FeatureUpdate
 from .event import Event, EventCreate, EventUpdate
+from .event_log import EventLog, EventLogCreate, EventLogRequest, EventLogUpdate
 from .allocation import Allocation, AllocationCreate, AllocationUpdate
 from .message import Message

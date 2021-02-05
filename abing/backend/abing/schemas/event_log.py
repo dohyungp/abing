@@ -1,4 +1,5 @@
 """EventLog Schema"""
+from typing import Optional
 from datetime import datetime
 from pydantic import BaseModel
 
@@ -8,6 +9,15 @@ class EventLogBase(BaseModel):
 
     event_id: int
     user_id: str
+
+
+class EventLogRequest(EventLogBase):
+    """EventLog CreateSchema"""
+
+    event_id: Optional[int]
+    event: Optional[str]
+
+    pass  # pylint: disable=unnecessary-pass
 
 
 class EventLogCreate(EventLogBase):

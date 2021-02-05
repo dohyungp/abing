@@ -1,7 +1,7 @@
 from typing import Any, Optional, List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-
+from sqlalchemy.exc import IntegrityError
 from abing import crud, models, schemas
 from abing.routes import deps
 
@@ -33,7 +33,34 @@ async def create_event(
     db: Session = Depends(deps.get_db),
     current_user: models.User = Depends(deps.get_current_active_user),
 ):
-    return crud.event.create(db=db, obj_in=event_in)
+    try:
+        event = crud.event.create(db=db, obj_in=event_in)
+    except IntegrityError as unique_exception:
+        raise HTTPException(
+            status_code=400, detail="Event already exists"
+        ) from unique_exception
+    return event
+
+
+@router.post("/track", response_model=schemas.EventLog)
+async def create_event_log(
+    eventlog_in: schemas.EventLogRequest,
+    db: Session = Depends(deps.get_db),
+):
+    # FIXME: Move to pydantic vaildator
+    if eventlog_in.event and eventlog_in.event_id:
+        raise HTTPException(status_code=400, detail="Choose event or event id only")
+    elif not (eventlog_in.event or eventlog_in.event_id):
+        raise HTTPException(status_code=400, detail="Event name is required")
+
+    event = crud.event.get(db=db, id=eventlog_in.event_id, event_name=eventlog_in.event)
+    if not event:
+        raise HTTPException(status_code=404, detail="event not found")
+    new_eventlog_in = schemas.EventLogCreate(
+        event_id=event.id, user_id=eventlog_in.user_id
+    )
+    print(new_eventlog_in)
+    return crud.event_log.create(db=db, obj_in=new_eventlog_in)
 
 
 @router.put("/{id}", response_model=schemas.Event)
